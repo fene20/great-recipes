@@ -37,11 +37,21 @@ This is the main marketing website for Code Institute. It is designed to be resp
 
 *   ### Wireframes
 
-    -   Home Page Wireframe - [View](https://github.com/)
+    -   Home Page Wireframe - [View](wireframe_and_database_design/great_recipes_home.pdf)
 
-    -   Mobile Wireframe - [View](https://github.com/)
+    -   Register Page Wireframe - [View](wireframe_and_database_design/great_recipes_register.pdf)
 
-    -   Contact Us Page Wireframe - [View](https://github.com/)
+    -   Login Page Wireframe - [View](wireframe_and_database_design/great_recipes_login.pdf)
+
+    -   Add Recipe Page Wireframe - [View](wireframe_and_database_design/great_recipes_add_recipe.pdf)
+
+    -   Manage Cuisine Wireframe - [View](wireframe_and_database_design/great_recipes_manage_cuisine.pdf)
+
+
+*   ### Database Design
+
+    -   Database Design - [View](wireframe_and_database_design/QuickDBD-Recipe.png)
+
 
 ## Features
 
