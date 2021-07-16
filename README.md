@@ -37,14 +37,18 @@ This is the main marketing website for Code Institute. It is designed to be resp
 
 *   ### Wireframes
 
+    -   The reader has access to the Home, Register and Login Pages.
+
     -   Home Page Wireframe - [View](wireframe_and_database_design/great_recipes_home.pdf)
-
     -   Register Page Wireframe - [View](wireframe_and_database_design/great_recipes_register.pdf)
-
     -   Login Page Wireframe - [View](wireframe_and_database_design/great_recipes_login.pdf)
 
+
+    -   The registered user has access to the Home and Add Recipe Pages. The Registered user can also Log out.
     -   Add Recipe Page Wireframe - [View](wireframe_and_database_design/great_recipes_add_recipe.pdf)
 
+
+    -   The admin has access to the Home, Add Recipe and Manage Cuisine Pages. The admin can also Log out.
     -   Manage Cuisine Wireframe - [View](wireframe_and_database_design/great_recipes_manage_cuisine.pdf)
 
 
