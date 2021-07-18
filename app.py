@@ -21,7 +21,9 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_recipes")
 def get_recipes():
-    recipes = mongo.db.recipes.find()
+    # list() converts Mongo Cursor Object to a list.
+    # I.e. so commented out code cannot be read by Jinja
+    recipes = list(mongo.db.recipes.find())
     return render_template("recipes.html", recipes=recipes)
 
 
