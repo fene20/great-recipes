@@ -51,6 +51,7 @@ This is the main marketing website for Code Institute. It is designed to be resp
     -   The admin has access to the Home, Add Recipe and Manage Cuisine Pages. The admin can also Log out.
     -   Manage Cuisine Wireframe - [View](wireframe_and_database_design/great_recipes_manage_cuisine.pdf)
 
+    18th July. Add My Recipes so that users can click on the recipes they added without searching for them.
 
 *   ### Database Design
 
@@ -219,7 +220,7 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 ### Code
 
--   This project was based on the Code Institute Mini Project.
+-   This project was based on the Code Institute Data Centric Development Mini Project.
 
 -   The full-screen hero image code came from this [StackOverflow post](https://stackoverflow.com)
 
@@ -242,3 +243,7 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 -   My Mentor for continuous helpful feedback.
 
 -   Tutor support at Code Institute for their support.
+
+### TBD
+
+-   Fix redirects after Login and Register.

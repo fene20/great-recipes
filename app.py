@@ -46,6 +46,9 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
+        # Pass user cookie to username in userrecipes template
+        return redirect(url_for("my_recipes", username=session["user"]))
+
     return render_template("register.html")
 
 
@@ -61,9 +64,12 @@ def login():
             # ensure hashed password matches user input
             # is DB password hash = log in form password hash
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash("Welcome, {}".format(request.form.get("username")))
+                    existing_user["password"], request.form.get("password")):
+                        session["user"] = request.form.get("username").lower()
+                        flash("Welcome, {}".format(
+                            request.form.get("username")))
+                        return redirect(url_for(
+                            "my_recipes", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -75,6 +81,14 @@ def login():
             return redirect(url_for("login"))
 
     return render_template("login.html")
+
+
+@app.route("/my_recipes/<username>", methods=["GET", "POST"])
+def my_recipes(username):
+    # grab the session user's username from db
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    return render_template("my_recipes.html", username=username)
 
 
 if __name__ == "__main__":
