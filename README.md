@@ -247,3 +247,4 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 ### TBD
 
 -   Fix redirects after Login and Register. Works in browser.
+-   Maybe add dropdown to user recipies to select cuisine.
