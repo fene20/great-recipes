@@ -88,7 +88,21 @@ def my_recipes(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template("my_recipes.html", username=username)
+
+    # Force attacker back to login if they try to force access to someone elses Recipies.
+    if session["user"]:  # If session user cookie is true.
+        return render_template("my_recipes.html", username=username)
+
+    # If not true or does not exist.
+    return redirect(url_for("login"))
+
+
+@app.route("/logout")
+def logout():
+    # remove user from session cookie
+    flash("You have been logged out")
+    session.pop("user") # Remove session cookie.
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":

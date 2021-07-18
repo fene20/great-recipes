@@ -246,4 +246,4 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 ### TBD
 
--   Fix redirects after Login and Register.
+-   Fix redirects after Login and Register. Works in browser.
