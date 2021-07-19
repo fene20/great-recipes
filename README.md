@@ -249,3 +249,5 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 -   Fix redirects after Login and Register. Works in browser.
 -   Maybe add dropdown to user recipies to select cuisine.
 -   Add tooltip to My recipies to highlight unpublished recipes.
+-   Save/Publish recipe name required field.
+-   Publish recipe all fields required.
