@@ -3,7 +3,7 @@ from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
-from bson.objectid import ObjectId
+from bson.objectid import ObjectId  # This allows us to properly render MongoDB documents by their unique ID
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -118,7 +118,7 @@ def add_recipe():
             # Change to 'request.form.getlist()' to read ingredients array etc.
             "ingredients": request.form.get("ingredients"),
             "preperation_steps": request.form.get("preperation_steps"),
-            "tools_required": request.form.get("tools_required"),   
+            "tools_required": request.form.get("tools_required"),
             "is_published": "yes",
             "created_by": session["user"]
         }
@@ -129,6 +129,14 @@ def add_recipe():
     # IF POST above . . . . else GET here.
     cuisines = mongo.db.cuisines.find().sort("cuisine_style", 1)
     return render_template("add_recipe.html", cuisines=cuisines)
+
+
+@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
+def edit_recipe(recipe_id):
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    cuisines = mongo.db.cuisines.find().sort("cuisine_style", 1)
+    return render_template(
+        "edit_recipe.html", recipe=recipe, cuisines=cuisines)
 
 
 if __name__ == "__main__":
