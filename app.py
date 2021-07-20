@@ -103,7 +103,7 @@ def my_recipes(username):
 def logout():
     # remove user from session cookie
     flash("You have been logged out")
-    session.pop("user") # Remove session cookie.
+    session.pop("user")  # Remove session cookie.
     return redirect(url_for("login"))
 
 
@@ -118,7 +118,7 @@ def add_recipe():
             # Change to 'request.form.getlist()' to read ingredients array etc.
             "ingredients": request.form.get("ingredients"),
             "preperation_steps": request.form.get("preperation_steps"),
-            "tools_required": request.form.get("tools_required"),            
+            "tools_required": request.form.get("tools_required"),   
             "is_published": "yes",
             "created_by": session["user"]
         }
