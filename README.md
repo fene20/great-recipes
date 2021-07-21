@@ -254,5 +254,6 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 -   Free FAwe save and upload.
 -   Add is_published == yes or no to add recipe form.
 -   Change ingredients to an array and read with request.form.getlist()
+-   Add defensive programming to delete task.
 
 -   Small bug. saving cuisine style as cuisine name in the DB. changed all references from cuisine_name to cuisine_style.
