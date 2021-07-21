@@ -112,7 +112,7 @@ def logout():
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
-        # Add is_published logic here.
+        # Add is_published logic here and to edit recipe below.
         recipe = {
             "cuisine_style": request.form.get("cuisine_style"),
             "recipe_name": request.form.get("recipe_name"),
@@ -135,6 +135,24 @@ def add_recipe():
 
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
+    if request.method == "POST":
+        # Add is_published logic here and to add recipe above.
+        # recipe = {} changed to submit = {} as recipe =
+        # mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}) is used below
+        submit = {
+            "cuisine_style": request.form.get("cuisine_style"),
+            "recipe_name": request.form.get("recipe_name"),
+            "picture": request.form.get("picture"),
+            # Change to 'request.form.getlist()' to read ingredients array etc.
+            "ingredients": request.form.get("ingredients"),
+            "preperation_steps": request.form.get("preperation_steps"),
+            "tools_required": request.form.get("tools_required"),
+            "is_published": "yes",
+            "created_by": session["user"]
+        }
+        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, submit)
+        flash("Recipe Successfully Updated")
+
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     cuisines = mongo.db.cuisines.find().sort("cuisine_style", 1)
     return render_template(
