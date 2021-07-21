@@ -166,6 +166,13 @@ def delete_recipe(recipe_id):
     return redirect(url_for("get_recipes"))
 
 
+@app.route("/get_cuisines")
+def get_cuisines():
+    cuisines = list(mongo.db.cuisines.find().sort("cuisine_style", 1))
+    # cuisines on LHS passed to temlpate, cuisines on RHS = list(mongo.db etc.
+    return render_template("cuisines.html", cuisines=cuisines)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
