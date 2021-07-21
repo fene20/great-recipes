@@ -3,11 +3,12 @@ from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
-from bson.objectid import ObjectId  # This allows us to properly render MongoDB documents by their unique ID
+# This allows us to properly render MongoDB documents by their unique ID
+from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
-
+env = env  # Get's rid of 'env' imported but unused error
 
 app = Flask(__name__)
 
@@ -91,7 +92,8 @@ def my_recipes(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
-    # Force attacker back to login if they try to force access to someone elses Recipies.
+    # Force attacker back to login if they try to force access
+    # to someone else's Recipies by killing the session.
     if session["user"]:  # If session user cookie is true.
         return render_template("my_recipes.html", username=username)
 
@@ -112,7 +114,7 @@ def add_recipe():
     if request.method == "POST":
         # Add is_published logic here.
         recipe = {
-            "cuisine_name": request.form.get("cuisine_name"),
+            "cuisine_style": request.form.get("cuisine_style"),
             "recipe_name": request.form.get("recipe_name"),
             "picture": request.form.get("picture"),
             # Change to 'request.form.getlist()' to read ingredients array etc.

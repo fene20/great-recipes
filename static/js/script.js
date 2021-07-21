@@ -7,7 +7,6 @@ $(document).ready(function () {
     $('.collapsible').collapsible();
     $('select').formSelect();
 
-
     /* fix for Choose Cuisine dropdown so that for "required" works */
     validateMaterializeSelect();
     function validateMaterializeSelect() {

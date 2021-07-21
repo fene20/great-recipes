@@ -11,9 +11,14 @@
                 <div class="input-field col s12">
                     <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
                     <select id="cuisine_style" name="cuisine_style" class="validate" required>
-                        <option value="" disabled selected>Choose Cuisine</option>
+                        <option value="" disabled>Choose Cuisine</option>
                         {% for cuisine in cuisines %}
-                            <option value="{{ cuisine.cuisine_style }}">{{ cuisine.cuisine_style }}</option>
+                            {% if cuisine.cuisine_style == recipe.cuisine_style %}
+                                <option value="{{ cuisine.cuisine_style }}" selected>{{ cuisine.cuisine_style }}</option> 
+                            {% else %}
+                                
+                            {% endif %}
+
                         {% endfor %}
                     </select>
                     <label for="cuisine_style">Cuisine</label>
