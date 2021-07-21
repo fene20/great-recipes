@@ -16,7 +16,7 @@
                             {% if cuisine.cuisine_style == recipe.cuisine_style %}
                                 <option value="{{ cuisine.cuisine_style }}" selected>{{ cuisine.cuisine_style }}</option> 
                             {% else %}
-                                
+                                <option value="{{ cuisine.cuisine_style }}">{{ cuisine.cuisine_style }}</option> 
                             {% endif %}
 
                         {% endfor %}
@@ -33,7 +33,7 @@
                     <!-- name="" attribute is the key that's used in the database -->
                     <!-- best practice to keep the name, ID, and label all exactly the same -->
                     <input id="recipe_name" name="recipe_name" minlength="5" maxlength="50"
-                    type="text" class="validate" required> 
+                    value="{{ recipe.recipe_name }}" type="text" class="validate" required> 
                     <label for="recipe_name">Recipe Name</label>
                 </div>
             </div> 
@@ -43,7 +43,7 @@
                 <div class="input-field col s12">
                     <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
                     <input id="picture" name="picture" minlength="5" maxlength="50" type="text"
-                        class="validate" required>
+                    value="{{ recipe.picture }}" class="validate" required>
                     <label for="picture">Picture text for now</label>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
                     <textarea id="ingredients" name="ingredients" minlength="5"
-                        maxlength="200" class="materialize-textarea validate" required></textarea>
+                        maxlength="200" class="materialize-textarea validate" required>{{ recipe.ingredients }}</textarea>
                     <label for="ingredients">Ingredients</label>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
                     <textarea id="preperation_steps" name="preperation_steps" minlength="5"
-                        maxlength="200" class="materialize-textarea validate" required></textarea>
+                        maxlength="200" class="materialize-textarea validate" required>{{ recipe.preperation_steps }}</textarea>
                     <label for="preperation_steps">Preperation steps</label>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
                     <textarea id="tools_required" name="tools_required" minlength="5"
-                        maxlength="200" class="materialize-textarea validate" required></textarea>
+                        maxlength="200" class="materialize-textarea validate" required>{{ recipe.tools_required }}</textarea>
                     <label for="tools_required">Tools required</label>
                 </div>
             </div>
@@ -81,8 +81,11 @@
             <!-- edit button -->
             <div class="row">
                 <div class="col s12 center-align">
+                    <a href="{{ url_for('get_recipes') }}" class="btn-large red text-shadow">
+                        Cancel <i class="fas fa-times-circle right"></i>
+                    </a>
                     <button type="submit" class="btn-large light-blue darken-1 text-shadow">
-                        Edit Recipe <i class="fas fa-edit right"></i>
+                        Save Edits <i class="fas fa-save right"></i>
                     </button>
                 </div>
             </div>
