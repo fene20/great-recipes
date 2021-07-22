@@ -33,6 +33,7 @@
                         <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
                         {% if session.user|lower == "admin"|lower %}
                             <li><a href="{{ url_for('get_cuisines') }}">Manage Cuisines</a></li>
+                            <li><a href="{{ url_for('generate_index') }}">Generate Search Index</a></li>
                         {% endif %}
                         <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                     {% else %}
@@ -54,6 +55,7 @@
                 <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
                 {% if session.user|lower == "admin"|lower %}
                     <li><a href="{{ url_for('get_cuisines') }}">Manage Cuisines</a></li>
+                    <li><a href="{{ url_for('generate_index') }}">Generate Search Index</a></li>
                 {% endif %}
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
