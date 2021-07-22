@@ -169,8 +169,23 @@ def delete_recipe(recipe_id):
 @app.route("/get_cuisines")
 def get_cuisines():
     cuisines = list(mongo.db.cuisines.find().sort("cuisine_style", 1))
-    # cuisines on LHS passed to temlpate, cuisines on RHS = list(mongo.db etc.
+    # cuisines on LHS passed to temlpate, cuisines on RHS = list(mongo.db etc. above
     return render_template("cuisines.html", cuisines=cuisines)
+
+
+@app.route("/add_cuisine", methods=["GET", "POST"])
+def add_cuisine():
+    if request.method == "POST":
+        cuisine = {
+            "cuisine_style": request.form.get("cuisine_style")
+        }
+        mongo.db.cuisines.insert_one(cuisine)
+        flash("New Cuisine Added")
+        return redirect(url_for("get_cuisines"))
+
+    return render_template("add_cuisine.html")
+
+
 
 
 if __name__ == "__main__":
