@@ -18,3 +18,31 @@
 .brand-logo {
     margin-left: 10px;
 }
+
+/* Materialize footer */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  .container i {
+    margin-left: 10px;
+  }
+
+  .page-footer {
+    padding-top: 0px;
+    background-color: #555555;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+
+#dummy_footer{
+    height: 50px; 
+}

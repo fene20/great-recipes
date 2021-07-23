@@ -260,6 +260,12 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 -   Small bug. Recipies.html showing no results found. Had {% if tasks|length > 0 %} instead of {% if recipes|length > 0 %}
 -   Small bug. my_recipes.html had same code as recipies.html but was not listing the recipes. Added recipes = list(mongo.db.recipes.find()) yo my_recipies in app.py.
     Was not connecting to the DB.
+-   Small bug. Collapsed search bar was being displayed on my_recipe.html. changed search to
+recipes = list(mongo.db.recipes.find({"created_by": username, "$text": {"$search": query}}))
+so nothing would be passed to my_recipes.html if there was no result found.
+
+/* Footer code from Materialize */
+
 
 
 
