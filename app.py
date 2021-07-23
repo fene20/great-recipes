@@ -24,7 +24,7 @@ mongo = PyMongo(app)
 def get_recipes():
     # list() converts Mongo Cursor Object to a list.
     # I.e. so commented out code cannot be read by Jinja
-    recipes = list(mongo.db.recipes.find())
+    recipes = list(mongo.db.recipes.find({"is_published": "yes"}))
     return render_template("recipes.html", recipes=recipes)
 
 
