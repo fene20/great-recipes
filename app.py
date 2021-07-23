@@ -109,10 +109,12 @@ def my_recipes(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
+    recipes = list(mongo.db.recipes.find())    
+
     # Force attacker back to login if they try to force access
     # to someone else's Recipies by killing the session.
     if session["user"]:  # If session user cookie is true.
-        return render_template("my_recipes.html", username=username)
+        return render_template("my_recipes.html", username=username, recipes=recipes)
 
     # If not true or does not exist.
     return redirect(url_for("login"))
