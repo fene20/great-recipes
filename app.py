@@ -45,6 +45,13 @@ def search():
     return render_template("recipes.html", recipes=recipes)
 
 
+@app.route("/search_user/<username>", methods=["GET", "POST"])
+def search_user(username):
+    query = request.form.get("query")
+    recipes = list(mongo.db.recipes.find({"created_by": username, "$text": {"$search": query}}))
+    return render_template("my_recipes.html", username=username, recipes=recipes)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -105,10 +112,7 @@ def login():
 
 @app.route("/my_recipes/<username>", methods=["GET", "POST"])
 def my_recipes(username):
-    # grab the session user's username from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-
+    
     recipes = list(mongo.db.recipes.find())    
 
     # Force attacker back to login if they try to force access
