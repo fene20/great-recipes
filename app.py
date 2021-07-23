@@ -8,7 +8,7 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
-env = env  # Get's rid of 'env' imported but unused error
+
 
 app = Flask(__name__)
 
@@ -31,7 +31,8 @@ def get_recipes():
 @app.route("/generate_index", methods=["GET", "POST"])
 def generate_index():
     if request.method == "POST":
-        mongo.db.recipes.create_index([("recipe_name", "text"), ("ingredients", "text")])
+        mongo.db.recipes.create_index([(
+            "recipe_name", "text"), ("ingredients", "text")])
         flash("Search Index has been generated")
     recipes = list(mongo.db.recipes.find())
     return render_template("generate_index.html", recipes=recipes)
@@ -82,13 +83,13 @@ def login():
         if existing_user:
             # ensure hashed password matches user input
             # is DB password hash = log in form password hash
-            if check_password_hash(
-                    existing_user["password"], request.form.get("password")):
-                        session["user"] = request.form.get("username").lower()
-                        flash("Welcome, {}".format(
-                            request.form.get("username")))
-                        return redirect(url_for(
-                            "my_recipes", username=session["user"]))
+            password = request.form.get("password")
+            if check_password_hash(existing_user["password"], password):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(
+                    request.form.get("username")))
+                return redirect(url_for(
+                    "my_recipes", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -128,7 +129,7 @@ def logout():
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
-        # Add is_published logic here and to edit recipe below.
+        is_published = "yes" if request.form.get("is_published") else "off"
         recipe = {
             "cuisine_style": request.form.get("cuisine_style"),
             "recipe_name": request.form.get("recipe_name"),
@@ -137,7 +138,7 @@ def add_recipe():
             "ingredients": request.form.get("ingredients"),
             "preperation_steps": request.form.get("preperation_steps"),
             "tools_required": request.form.get("tools_required"),
-            "is_published": "yes",
+            "is_published": is_published,
             "created_by": session["user"]
         }
         mongo.db.recipes.insert_one(recipe)
@@ -155,6 +156,7 @@ def edit_recipe(recipe_id):
         # Add is_published logic here and to add recipe above.
         # recipe = {} changed to submit = {} as recipe =
         # mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}) is used below
+        is_published = "yes" if request.form.get("is_published") else "off"
         submit = {
             "cuisine_style": request.form.get("cuisine_style"),
             "recipe_name": request.form.get("recipe_name"),
@@ -163,7 +165,7 @@ def edit_recipe(recipe_id):
             "ingredients": request.form.get("ingredients"),
             "preperation_steps": request.form.get("preperation_steps"),
             "tools_required": request.form.get("tools_required"),
-            "is_published": "yes",
+            "is_published": is_published,
             "created_by": session["user"]
         }
         mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, submit)
