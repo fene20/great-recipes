@@ -37,16 +37,32 @@
 
                         <div class="col s9">
                             <!-- Add recipe picture here-->
-                            <strong>{{ recipe.recipe_name }}</strong>
-                            <p>{{ recipe.cuisine_style }} Cuisine</p>
+                            <h6>{{ recipe.recipe_name }}</h6>
+                            <strong>{{ recipe.cuisine_style }} Cuisine</strong>
                         </div>
 
                     </div>
 
                     <div class="collapsible-body">
-                        <strong>{{ recipe.ingredients }}</strong>
-                        <p>{{ recipe.preperation_steps }}</p>
-                        <p>{{ recipe.tools_required }}</p>
+
+                        <ul>
+                            {% for ingredient in recipe.ingredients %}
+                                <li>{{ ingredient }}</li>
+                            {% endfor %}
+                        </ul>
+                        
+                        <ol>
+                            {% for step in recipe.preperation_steps %}
+                                <li>{{ step }}</li>
+                            {% endfor %}
+                        </ol>       
+                        
+                        <ul>
+                            {% for tool in recipe.tools_required %}
+                                <li>{{ tool }}</li>
+                            {% endfor %}
+                        </ul>
+
                         <p><em>by: {{ recipe.created_by }}</em></p>
                     </div>
                 </li>

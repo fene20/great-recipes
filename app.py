@@ -140,10 +140,10 @@ def add_recipe():
             "cuisine_style": request.form.get("cuisine_style"),
             "recipe_name": request.form.get("recipe_name"),
             "picture": request.form.get("picture"),
-            # Change to 'request.form.getlist()' to read ingredients array etc.
-            "ingredients": request.form.get("ingredients"),
-            "preperation_steps": request.form.get("preperation_steps"),
-            "tools_required": request.form.get("tools_required"),
+            # Tutor support to .split
+            "ingredients": [i.strip() for i in request.form.get("ingredients").split(',')],
+            "preperation_steps": [i.strip() for i in request.form.get("preperation_steps").split(',')],
+            "tools_required": [i.strip() for i in request.form.get("tools_required").split(',')],
             "is_published": is_published,
             "created_by": session["user"]
         }
@@ -167,10 +167,9 @@ def edit_recipe(recipe_id):
             "cuisine_style": request.form.get("cuisine_style"),
             "recipe_name": request.form.get("recipe_name"),
             "picture": request.form.get("picture"),
-            # Change to 'request.form.getlist()' to read ingredients array etc.
-            "ingredients": request.form.get("ingredients"),
-            "preperation_steps": request.form.get("preperation_steps"),
-            "tools_required": request.form.get("tools_required"),
+            "ingredients": [i.strip() for i in request.form.get("ingredients").split(',')],
+            "preperation_steps": [i.strip() for i in request.form.get("preperation_steps").split(',')],
+            "tools_required": [i.strip() for i in request.form.get("tools_required").split(',')],
             "is_published": is_published,
             "created_by": session["user"]
         }
