@@ -264,6 +264,12 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 recipes = list(mongo.db.recipes.find({"created_by": username, "$text": {"$search": query}}))
 so nothing would be passed to my_recipes.html if there was no result found.
 
+-   edit_recipe.html Bug. Ingredients were not being displayed on screen in one column. The 2nd and third elements were indented.
+-   https://stackoverflow.com/questions/45719062/jinja-docx-template-avoiding-new-line-in-nested-for/45719723
+-   detailed {{ '\n' -}} solution.
+-   {% if not loop.last %}{{ '\n' }}{% endif %} prevented the last CR.
+-   
+
 /* Footer code from Materialize */
 
 

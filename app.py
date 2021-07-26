@@ -112,8 +112,8 @@ def login():
 
 @app.route("/my_recipes/<username>", methods=["GET", "POST"])
 def my_recipes(username):
-    
-    recipes = list(mongo.db.recipes.find())    
+
+    recipes = list(mongo.db.recipes.find())
 
     # Force attacker back to login if they try to force access
     # to someone else's Recipies by killing the session.
@@ -140,7 +140,7 @@ def add_recipe():
             "cuisine_style": request.form.get("cuisine_style"),
             "recipe_name": request.form.get("recipe_name"),
             "picture": request.form.get("picture"),
-            # Tutor support to .split
+            # Credit: Tutor support for .split()
             "ingredients": [i.strip() for i in request.form.get("ingredients").split(',')],
             "preperation_steps": [i.strip() for i in request.form.get("preperation_steps").split(',')],
             "tools_required": [i.strip() for i in request.form.get("tools_required").split(',')],
@@ -167,9 +167,9 @@ def edit_recipe(recipe_id):
             "cuisine_style": request.form.get("cuisine_style"),
             "recipe_name": request.form.get("recipe_name"),
             "picture": request.form.get("picture"),
-            "ingredients": [i.strip() for i in request.form.get("ingredients").split(',')],
-            "preperation_steps": [i.strip() for i in request.form.get("preperation_steps").split(',')],
-            "tools_required": [i.strip() for i in request.form.get("tools_required").split(',')],
+            "ingredients": request.form.get("ingredients"),
+            "preperation_steps": request.form.get("preperation_steps"),
+            "tools_required": request.form.get("tools_required"),
             "is_published": is_published,
             "created_by": session["user"]
         }

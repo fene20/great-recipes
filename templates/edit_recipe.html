@@ -49,48 +49,49 @@
             </div>
 
             <!-- Ingredients -->
+            <!-- Credit: Stack Overflow for: if not loop.last '\n' endif  -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
-                    <textarea id="ingredients[]" name="ingredients[]" minlength="5"
-                        maxlength="200" class="materialize-textarea validate" required>
-                       
-                            {% recipe.ingredients %}
-                        
+                    <textarea id="ingredients[]" name="ingredients[]" minlength="5" maxlength="200"
+                        class="materialize-textarea validate" required>
+                        {%- for ingredient in recipe.ingredients %}
+                        {{- ingredient }}{% if not loop.last %}{{ '\n' }}{% endif %}
+                        {%- endfor -%}
                     </textarea>
                     <label for="ingredients[]">Ingredients</label>
                 </div>
             </div>
 
             <!-- Preperation steps -->
+            <!-- Credit: Stack Overflow for: if not loop.last '\n' endif  -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
                     <textarea id="preperation_steps" name="preperation_steps" minlength="5"
                         maxlength="200" class="materialize-textarea validate" required>
-                        
-                            {%  recipe.preperation_steps %}
-                      
+                        {%- for step in recipe.preperation_steps %}
+                        {{- step }}{% if not loop.last %}{{ '\n' }}{% endif %}
+                        {%- endfor -%}                    
                     </textarea>
                     <label for="preperation_steps">Preperation steps</label>
                 </div>
             </div>
 
             <!-- Tools -->
+            <!-- Credit: Stack Overflow for: if not loop.last '\n' endif  -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
                     <textarea id="tools_required" name="tools_required" minlength="5"
                         maxlength="200" class="materialize-textarea validate" required>
-                                               
-                            {% recipe.tools_required %}
-                              
-                        </ul>
+                        {%- for tool in recipe.tools_required %}
+                        {{- tool }}{% if not loop.last %}{{ '\n' }}{% endif %}
+                        {%- endfor -%}                         
                     </textarea>
                     <label for="tools_required">Tools required</label>
                 </div>
             </div>
-
 
             <!-- is published toggle -->
 			<div class="row">
