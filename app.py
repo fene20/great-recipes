@@ -113,7 +113,7 @@ def login():
 @app.route("/my_recipes/<username>", methods=["GET", "POST"])
 def my_recipes(username):
 
-    recipes = list(mongo.db.recipes.find())
+    recipes = list(mongo.db.recipes.find({"created_by": session["user"]}))
 
     # Force attacker back to login if they try to force access
     # to someone else's Recipies by killing the session.
