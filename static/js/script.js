@@ -6,6 +6,7 @@ $(document).ready(function () {
     $(".sidenav").sidenav({edge: "right"});
     $('.collapsible').collapsible();
     $('select').formSelect();
+    $('.modal').modal();
 
     /* fix for Choose Cuisine dropdown so that for "required" works */
     validateMaterializeSelect();

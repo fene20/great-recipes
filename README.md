@@ -269,6 +269,11 @@ so nothing would be passed to my_recipes.html if there was no result found.
 -   detailed {{ '\n' -}} solution.
 -   {% if not loop.last %}{{ '\n' }}{% endif %} prevented the last CR.
 -   
+-   Bug. Materialize pop up was deleting the first recipe not the one selected. Used variable insteaf of href="#modal1"
+Added data-target="{{ recipe._id }} to Modal trigger
+Added id="{{ recipe._id }}" to modal structure.
+
+
 
 /* Footer code from Materialize */
 
