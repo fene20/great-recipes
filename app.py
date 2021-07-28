@@ -20,6 +20,14 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
+@app.route("/home")
+def home():
+    # list() converts Mongo Cursor Object to a list.
+    # I.e. so commented out code cannot be read by Jinja
+    recipes = list(mongo.db.recipes.find({"is_published": "yes"}))
+    return render_template("home.html", recipes=recipes)
+
+
 @app.route("/get_recipes")
 def get_recipes():
     # list() converts Mongo Cursor Object to a list.
@@ -209,7 +217,7 @@ def add_cuisine():
             if style.lower() == new_style:
                 flash("Cuisine already exists")
                 return redirect(url_for("get_cuisines"))
-           
+
         cuisine = {
             "cuisine_style": request.form.get("cuisine_style")
         }
