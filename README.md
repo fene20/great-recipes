@@ -273,8 +273,42 @@ so nothing would be passed to my_recipes.html if there was no result found.
 Added data-target="{{ recipe._id }} to Modal trigger
 Added id="{{ recipe._id }}" to modal structure.
 
+        existing_cuisine = mongo.db.cuisines.find_one(
+            {"cuisine_style": request.form.get("cuisine_style").lower()})
+        if existing_cuisine:
+            flash("Cuisine already exists")
+            return redirect(url_for("get_cuisines"))
+
+            
+
+                    existing_cuisine = mongo.db.cuisines.find_one(
+            {"cuisine_style": request.form.get("cuisine_style").lower()})
+        if existing_cuisine:
+            flash("Cuisine already exists")
+            return redirect(url_for("get_cuisines"))
+
+            Allows the creation of Thai followed by thai but not thai followed by Thai.
+
+           Credit  https://www.tutorialspoint.com/list-all-values-of-a-certain-field-in-mongodb
 
 
+
+
+                   new_style = request.form.get("cuisine_style").lower()
+
+        # Credit tutorialspoint
+        db_styles = mongo.db.cuisines.distinct("cuisine_style")
+
+        for style in db_styles:
+            if style.lower() == new_style:
+                flash("Cuisine already exists")
+                return redirect(url_for("get_cuisines"))
+
+use .distinct() function
+
+        New code converts both database cuisine_style and form cuisine_style to lowercase and compares that.
+
+not needed for new recipe as there can be multiple recipies with the same name.
 /* Footer code from Materialize */
 
 

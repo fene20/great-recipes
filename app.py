@@ -199,6 +199,17 @@ def get_cuisines():
 @app.route("/add_cuisine", methods=["GET", "POST"])
 def add_cuisine():
     if request.method == "POST":
+        # check if cuisine already exists in db
+        new_style = request.form.get("cuisine_style").lower()
+
+        # Credit tutorialspoint
+        db_styles = mongo.db.cuisines.distinct("cuisine_style")
+
+        for style in db_styles:
+            if style.lower() == new_style:
+                flash("Cuisine already exists")
+                return redirect(url_for("get_cuisines"))
+           
         cuisine = {
             "cuisine_style": request.form.get("cuisine_style")
         }
