@@ -71,9 +71,19 @@ def search():
 
 @app.route("/search_user/<username>", methods=["GET", "POST"])
 def search_user(username):
-    query = request.form.get("query")
-    recipes = list(mongo.db.recipes.find({"created_by": username, "$text": {"$search": query}}))
-    return render_template("my_recipes.html", username=username, recipes=recipes)
+        # Redirect user if there is a force URL without a session
+    if session:  # If session is true.
+        if username == session["user"]:  # URL username must match session user
+            query = request.form.get("query")
+            recipes = list(mongo.db.recipes.find({"created_by": username, "$text": {"$search": query}}))
+            return render_template("my_recipes.html", username=username, recipes=recipes)
+        # URL username not matching session user
+        # Will not kill session as the force URL may be a mistake.
+        # A user forcing a URL can log in again anyway.
+        return redirect(url_for("home"))
+
+    # Session not true or does not exist.
+    return redirect(url_for("home"))
 
 
 @app.route("/register", methods=["GET", "POST"])
