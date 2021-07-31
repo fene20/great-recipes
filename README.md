@@ -311,6 +311,8 @@ use .distinct() function
 not needed for new recipe as there can be multiple recipies with the same name.
 /* Footer code from Materialize */
 
+defensive code in my_recipes
+Getting Key Error user when forcing URL https://8080-teal-lobster-b2qs96iu.ws-eu13.gitpod.io/my_recipes/timothy while logged out.
 
-
+Rearranged code to put session["user"] variable after if session:
 

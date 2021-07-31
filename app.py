@@ -71,12 +71,12 @@ def register():
             flash("Username already exists")
             return redirect(url_for("register"))
 
-        # else
+        # acts as else
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
-        mongo.db.users.insert_one(register)  # Insert a dictionary
+        mongo.db.users.insert_one(register)  # Insert the register dictionary
 
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
@@ -120,15 +120,17 @@ def login():
 
 @app.route("/my_recipes/<username>", methods=["GET", "POST"])
 def my_recipes(username):
+    print(username)
+    # Force attacker back to login page if they try to force URL without a session
+    if session:  # If session is true.
+        if username == session["user"]:  # URL username must match session user
+            recipes = list(mongo.db.recipes.find({"created_by": session["user"]}))
+            return render_template("my_recipes.html", username=username, recipes=recipes)
 
-    recipes = list(mongo.db.recipes.find({"created_by": session["user"]}))
+        # URL username not matching session user
+        return redirect(url_for("login"))
 
-    # Force attacker back to login if they try to force access
-    # to someone else's Recipies by killing the session.
-    if session["user"]:  # If session user cookie is true.
-        return render_template("my_recipes.html", username=username, recipes=recipes)
-
-    # If not true or does not exist.
+    # If session not true or does not exist.
     return redirect(url_for("login"))
 
 
@@ -140,8 +142,8 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_recipe", methods=["GET", "POST"])
-def add_recipe():
+@app.route("/add_recipe/<username>", methods=["GET", "POST"])
+def add_recipe(username):
     if request.method == "POST":
         is_published = "yes" if request.form.get("is_published") else "off"
         recipe = {
@@ -153,7 +155,7 @@ def add_recipe():
             "preperation_steps": [i.strip() for i in request.form.get("preperation_steps").split(',')],
             "tools_required": [i.strip() for i in request.form.get("tools_required").split(',')],
             "is_published": is_published,
-            "created_by": session["user"]
+            "created_by": username
         }
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe Successfully Added")
