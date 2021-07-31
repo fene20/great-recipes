@@ -120,17 +120,18 @@ def login():
 
 @app.route("/my_recipes/<username>", methods=["GET", "POST"])
 def my_recipes(username):
-    print(username)
-    # Force attacker back to login page if they try to force URL without a session
+    # Redirect user back to login page if there is a force URL without a session
     if session:  # If session is true.
         if username == session["user"]:  # URL username must match session user
             recipes = list(mongo.db.recipes.find({"created_by": session["user"]}))
             return render_template("my_recipes.html", username=username, recipes=recipes)
 
         # URL username not matching session user
+        # Will not kill session as the force URL may be a mistake.
+        # A user forcing a URL can log in again anyway.
         return redirect(url_for("login"))
 
-    # If session not true or does not exist.
+    # Session not true or does not exist.
     return redirect(url_for("login"))
 
 
@@ -144,26 +145,39 @@ def logout():
 
 @app.route("/add_recipe/<username>", methods=["GET", "POST"])
 def add_recipe(username):
-    if request.method == "POST":
-        is_published = "yes" if request.form.get("is_published") else "off"
-        recipe = {
-            "cuisine_style": request.form.get("cuisine_style"),
-            "recipe_name": request.form.get("recipe_name"),
-            "picture": request.form.get("picture"),
-            # Credit: Tutor support for .split()
-            "ingredients": [i.strip() for i in request.form.get("ingredients").split(',')],
-            "preperation_steps": [i.strip() for i in request.form.get("preperation_steps").split(',')],
-            "tools_required": [i.strip() for i in request.form.get("tools_required").split(',')],
-            "is_published": is_published,
-            "created_by": username
-        }
-        mongo.db.recipes.insert_one(recipe)
-        flash("Recipe Successfully Added")
-        return redirect(url_for("get_recipes"))
+    # Redirect user back to login page if there is a force URL without a session
+    if session:  # If session is true.
+        if username == session["user"]:  # URL username must match session user
+            if request.method == "POST":
+                is_published = "yes" if request.form.get("is_published") else "off"
+                recipe = {
+                    "cuisine_style": request.form.get("cuisine_style"),
+                    "recipe_name": request.form.get("recipe_name"),
+                    "picture": request.form.get("picture"),
+                    # Credit: Tutor support for .split() suggestion
+                    "ingredients": [i.strip() for i in request.form.get("ingredients").split(',')],
+                    "preperation_steps": [i.strip() for i in request.form.get("preperation_steps").split(',')],
+                    "tools_required": [i.strip() for i in request.form.get("tools_required").split(',')],
+                    "is_published": is_published,
+                    "created_by": username
+                }
+                mongo.db.recipes.insert_one(recipe)
+                flash("Recipe Successfully Added")
+                return redirect(url_for("get_recipes"))
 
-    # IF POST above . . . . else GET here.
-    cuisines = mongo.db.cuisines.find().sort("cuisine_style", 1)
-    return render_template("add_recipe.html", cuisines=cuisines)
+            # IF POST above . . . . else GET here.
+            cuisines = mongo.db.cuisines.find().sort("cuisine_style", 1)
+            return render_template("add_recipe.html", cuisines=cuisines)
+
+        # URL username not matching session user
+        # Will not kill session as the force URL may be a mistake.
+        # A user forcing a URL can log in again anyway.
+        return redirect(url_for("login"))
+
+    # Session not true or does not exist.
+    return redirect(url_for("login"))
+
+
 
 
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
