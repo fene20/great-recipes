@@ -33,7 +33,7 @@
                                 <p>Are you sure you would like to delete the <strong>{{ cuisine.cuisine_style }}</strong> cuisine?</p>
                             </div>
                             <div class="modal-footer white-text light-blue darken-4 text-shadow">
-                                <a href="{{ url_for('get_cuisines') }}" class="modal-close btn-small light-blue lighten-1">No, Cancel</a>    
+                                <a href="{{ url_for('get_cuisines', username=session['user']) }}" class="modal-close btn-small light-blue lighten-1">No, Cancel</a>    
                                 <a href="{{ url_for('delete_cuisine', cuisine_id=cuisine._id) }}" class="modal-close btn-small red text-shadow">Yes, Delete</a>
                             </div>
                         </div>

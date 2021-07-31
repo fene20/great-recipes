@@ -36,14 +36,30 @@ def get_recipes():
     return render_template("recipes.html", recipes=recipes)
 
 
-@app.route("/generate_index", methods=["GET", "POST"])
-def generate_index():
-    if request.method == "POST":
-        mongo.db.recipes.create_index([(
-            "recipe_name", "text"), ("ingredients", "text")])
-        flash("Search Index has been generated")
-    recipes = list(mongo.db.recipes.find())
-    return render_template("generate_index.html", recipes=recipes)
+@app.route("/generate_index/<username>", methods=["GET", "POST"])
+def generate_index(username):
+    # Redirect user back to login page if there is a force URL without a session
+    if session:  # If session is true.
+        if username == session["user"]:  # URL username must match session user
+            if username == "admin":
+
+                if request.method == "POST":
+                    mongo.db.recipes.create_index([(
+                        "recipe_name", "text"), ("ingredients", "text")])
+                    flash("Search Index has been generated")
+                recipes = list(mongo.db.recipes.find())
+                return render_template("generate_index.html", recipes=recipes)
+
+            # User is not an admin
+            return redirect(url_for("home"))
+
+        # URL username not matching session user
+        # Will not kill session as the force URL may be a mistake.
+        # A user forcing a URL can log in again anyway.
+        return redirect(url_for("home"))
+
+    # Session not true or does not exist.
+    return redirect(url_for("login"))
 
 
 @app.route("/search", methods=["GET", "POST"])
