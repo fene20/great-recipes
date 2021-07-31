@@ -35,7 +35,7 @@
                             <li><a href="{{ url_for('get_cuisines', username=session['user']) }}">Manage Cuisines</a></li>
                             <li><a href="{{ url_for('generate_index', username=session['user']) }}">Generate Search Index</a></li>
                         {% endif %}
-                        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                        <li><a href="{{ url_for('logout', username=session['user']) }}">Log Out</a></li>
                     {% else %}
                         <li><a href="{{ url_for('login') }}">Log In</a></li>
                         <li><a href="{{ url_for('register') }}">Register</a></li>
@@ -57,7 +57,7 @@
                     <li><a href="{{ url_for('get_cuisines', username=session['user']) }}">Manage Cuisines</a></li>
                     <li><a href="{{ url_for('generate_index', username=session['user']) }}">Generate Search Index</a></li>
                 {% endif %}
-                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                <li><a href="{{ url_for('logout', username=session['user']) }}">Log Out</a></li>
             {% else %}
                 <li><a href="{{ url_for('login') }}">Log In</a></li>
                 <li><a href="{{ url_for('register') }}">Register</a></li>

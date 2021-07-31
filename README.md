@@ -316,3 +316,4 @@ Getting Key Error user when forcing URL https://8080-teal-lobster-b2qs96iu.ws-eu
 
 Rearranged code to put session["user"] variable after if session:
 
+Forcing URL for logout when not logged in gives a key error. So add defensive code.
