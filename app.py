@@ -28,6 +28,12 @@ def home():
     return render_template("home.html", recipes=recipes)
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('error404.html'), 404
+
+
 @app.route("/get_recipes")
 def get_recipes():
     # list() converts Mongo Cursor Object to a list.
@@ -159,7 +165,7 @@ def add_recipe(username):
     # IF POST above . . . . else GET here.
     cuisines = mongo.db.cuisines.find().sort("cuisine_style", 1)
     return render_template("add_recipe.html", cuisines=cuisines)
-     
+
 
 @app.route("/edit_recipe/<username>, <recipe_id>", methods=["GET", "POST"])
 def edit_recipe(username, recipe_id):
@@ -203,11 +209,11 @@ def get_cuisines(username):
     block_force_url_admin(username)
     cuisines = list(mongo.db.cuisines.find().sort("cuisine_style", 1))
     # cuisines on LHS passed to temlpate, cuisines on RHS = list(mongo.db above
-    return render_template("cuisines.html", cuisines=cuisines)
+    return render_template("cuisines.html", username=username, cuisines=cuisines)
 
 
-@app.route("/add_cuisine", methods=["GET", "POST"])
-def add_cuisine():
+@app.route("/add_cuisine/<username>", methods=["GET", "POST"])
+def add_cuisine(username):
     block_force_url_admin(username)
     if request.method == "POST":
         # check if cuisine already exists in db
@@ -219,20 +225,20 @@ def add_cuisine():
         for style in db_styles:
             if style.lower() == new_style:
                 flash("Cuisine already exists")
-                return redirect(url_for("get_cuisines"))
+                return redirect(url_for("get_cuisines", username=username))
 
         cuisine = {
             "cuisine_style": request.form.get("cuisine_style")
         }
         mongo.db.cuisines.insert_one(cuisine)
         flash("New Cuisine Added")
-        return redirect(url_for("get_cuisines"))
+        return redirect(url_for("get_cuisines", username=username))
 
     return render_template("add_cuisine.html")
 
 
-@app.route("/edit_cuisine/<cuisine_id>", methods=["GET", "POST"])
-def edit_cuisine(cuisine_id):
+@app.route("/edit_cuisine/<username>, <cuisine_id>", methods=["GET", "POST"])
+def edit_cuisine(username, cuisine_id):
     block_force_url_admin(username)
     if request.method == "POST":
         submit = {
@@ -240,10 +246,18 @@ def edit_cuisine(cuisine_id):
         }
         mongo.db.cuisines.update({"_id": ObjectId(cuisine_id)}, submit)
         flash("Cuisine Successfully Updated")
-        return redirect(url_for("get_cuisines"))
+        return redirect(url_for("get_cuisines", username=username))
 
     cuisine = mongo.db.cuisines.find_one({"_id": ObjectId(cuisine_id)})
     return render_template("edit_cuisine.html", cuisine=cuisine)
+
+
+@app.route("/delete_cuisine/<username>, <cuisine_id>")
+def delete_cuisine(username, cuisine_id):
+    block_force_url_admin(username)
+    mongo.db.cuisines.remove({"_id": ObjectId(cuisine_id)})
+    flash("Cuisine Successfully Deleted")
+    return redirect(url_for("get_cuisines", username=username))
 
 
 def block_force_url(username):

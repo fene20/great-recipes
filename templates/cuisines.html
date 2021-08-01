@@ -5,7 +5,7 @@
 
     <div class="row">
         <div class="col s12 center-align">
-            <a href="{{ url_for('add_cuisine') }}" class="btn-large light-blue darken-2 text-shadow">
+            <a href="{{ url_for('add_cuisine', username=session['user']) }}" class="btn-large light-blue darken-2 text-shadow">
                 Add Cuisine <i class="fas fa-plus-square right"></i>
             </a>
         </div>
@@ -20,8 +20,8 @@
                         <span class="card-title">{{ cuisine.cuisine_style }}</span>
                     </div>
                     <div class="card-action">
-                        <a href="{{ url_for('edit_cuisine', cuisine_id=cuisine._id) }}" class="btn green accent-4">Edit</a>
-                        <!-- <a href="{{ url_for('delete_cuisine', cuisine_id=cuisine._id) }}" class="btn red text-shadow">Delete</a> -->
+                        <a href="{{ url_for('edit_cuisine', username=session['user'], cuisine_id=cuisine._id) }}" class="btn green accent-4">Edit</a>
+               
 
 
                         <!-- Modal Trigger -->
@@ -34,7 +34,7 @@
                             </div>
                             <div class="modal-footer white-text light-blue darken-4 text-shadow">
                                 <a href="{{ url_for('get_cuisines', username=session['user']) }}" class="modal-close btn-small light-blue lighten-1">No, Cancel</a>    
-                                <a href="{{ url_for('delete_cuisine', cuisine_id=cuisine._id) }}" class="modal-close btn-small red text-shadow">Yes, Delete</a>
+                                <a href="{{ url_for('delete_cuisine', username=session['user'], cuisine_id=cuisine._id) }}" class="modal-close btn-small red text-shadow">Yes, Delete</a>
                             </div>
                         </div>
 
