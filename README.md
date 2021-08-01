@@ -322,3 +322,27 @@ Forcing URL for logout when not logged in gives a key error. So add defensive co
 https://8080-teal-lobster-b2qs96iu.ws-eu13.gitpod.io/search_user/jack
 gives pymongo.errors.OperationFailure
 so add defensive programming.
+
+edit recipe has an id passed to it so not likely to be forced. But someone may share their url with a recipe id in it so add extra defensive programming to be sure.
+
+bug
+TypeError: 'NoneType' object is not iterable
+reset button on all recipes page would not work. tracked down to null element in Mongo DB.
+
+Edit recipe cancel button did not work.
+werkzeug.routing.BuildError
+werkzeug.routing.BuildError: Could not build url for endpoint 'edit_recipe' with values ['recipe_id']. Did you forget to specify values ['username']?
+
+Due to commented out code in recipres.html.
+                            <!-- {% if session.user|lower == recipe.created_by|lower %}
+                                <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="btn-small light-blue lighten-1">Edit</a>
+                                <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="btn-small red text-shadow">Delete</a>
+                            {% endif %}                        -->
+
+Edit recipe save edits button did not work.
+TypeError: 'NoneType' object is not iterable
+null in database ingredients, i.e. not an array.
+
+Coud not edit a recipe and save it again with no changes.
+AttributeError: 'NoneType' object has no attribute 'split'
+ingredients (but not preperation_steps or tools) in edit_recipe.html was declared as an array with id/name/for="ingredients[]"
