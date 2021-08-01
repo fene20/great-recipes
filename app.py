@@ -152,9 +152,9 @@ def add_recipe(username):
             "recipe_name": request.form.get("recipe_name"),
             "picture": request.form.get("picture"),
             # Credit: Tutor support for .split() suggestion
-            "ingredients": [i.strip() for i in request.form.get("ingredients").split(',')],
-            "preperation_steps": [i.strip() for i in request.form.get("preperation_steps").split(',')],
-            "tools_required": [i.strip() for i in request.form.get("tools_required").split(',')],
+            "ingredients": [i.strip() for i in request.form.get("ingredients").split(';')],
+            "preparation_steps": [i.strip() for i in request.form.get("preparation_steps").split(';')],
+            "tools_required": [i.strip() for i in request.form.get("tools_required").split(';')],
             "is_published": is_published,
             "created_by": username
         }
@@ -180,9 +180,9 @@ def edit_recipe(username, recipe_id):
             "recipe_name": request.form.get("recipe_name"),
             "picture": request.form.get("picture"),
             # Credit: Tutor support for .split() suggestion
-            "ingredients": [i.strip() for i in request.form.get("ingredients").split(',')],
-            "preperation_steps": [i.strip() for i in request.form.get("preperation_steps").split(',')],
-            "tools_required": [i.strip() for i in request.form.get("tools_required").split(',')],
+            "ingredients": [i.strip() for i in request.form.get("ingredients").split(';')],
+            "preparation_steps": [i.strip() for i in request.form.get("preparation_steps").split(';')],
+            "tools_required": [i.strip() for i in request.form.get("tools_required").split(';')],
             "is_published": is_published,
             "created_by": session["user"]
         }

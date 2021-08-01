@@ -63,10 +63,29 @@
 
                         </div>
 
+
                         <div class="collapsible-body">
-                            <strong>{{ recipe.ingredients }}</strong>
-                            <p>{{ recipe.preperation_steps }}</p>
-                            <p>{{ recipe.tools_required }}</p>
+                            <h5>Ingredients</h5>
+                            <ul>
+                                {% for ingredient in recipe.ingredients %}
+                                    <li>{{ ingredient }}</li>
+                                {% endfor %}
+                            </ul>
+                            
+                            <h5>Preparation Steps</h5>
+                            <ol>
+                                {% for step in recipe.preparation_steps %}
+                                    <li>{{ step }}</li>
+                                {% endfor %}
+                            </ol>       
+                            
+                            <h5>Tools Required</h5>
+                            <ul>
+                                {% for tool in recipe.tools_required %}
+                                    <li>{{ tool }}</li>
+                                {% endfor %}
+                            </ul>
+    
                             <p><em>by: {{ recipe.created_by }}</em></p>
                         </div>
                     </li>
