@@ -253,11 +253,19 @@ def edit_recipe(username, recipe_id):
 
 
 
-@app.route("/delete_recipe/<recipe_id>")
-def delete_recipe(recipe_id):
-    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
-    flash("Recipe Successfully Deleted")
-    return redirect(url_for('my_recipes', username=session['user']))
+@app.route("/delete_recipe/<username>, <recipe_id>")
+def delete_recipe(username, recipe_id):
+    if session:  # If session is true.
+        if username == session["user"]:  # URL username must match session user
+            mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+            flash("Recipe Successfully Deleted")
+            return redirect(url_for('my_recipes', username=session['user']))
+        # URL username not matching session user
+        # Will not kill session as the force URL may be a mistake.
+        # A user forcing a URL can log in again anyway.
+        return redirect(url_for("home"))
+    # Session not true or does not exist.
+    return redirect(url_for("login"))
 
 
 @app.route("/get_cuisines/<username>")

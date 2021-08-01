@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="modal-footer white-text light-blue darken-4 text-shadow">
                                         <a href="{{ url_for('my_recipes', username=session['user']) }}" class="modal-close btn-small light-blue lighten-1">No, Cancel</a>    
-                                        <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="modal-close btn-small red text-shadow">Yes, Delete</a>
+                                        <a href="{{ url_for('delete_recipe', username=session['user'], recipe_id=recipe._id) }}" class="modal-close btn-small red text-shadow">Yes, Delete</a>
                                     </div>
                                 </div>
 
