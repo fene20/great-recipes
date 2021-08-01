@@ -38,28 +38,13 @@ def get_recipes():
 
 @app.route("/generate_index/<username>", methods=["GET", "POST"])
 def generate_index(username):
-    # Redirect user if there is a force URL without a session
-    if session:  # If session is true.
-        if username == session["user"]:  # URL username must match session user
-            if username == "admin":
-
-                if request.method == "POST":
-                    mongo.db.recipes.create_index([(
-                        "recipe_name", "text"), ("ingredients", "text")])
-                    flash("Search Index has been generated")
-                recipes = list(mongo.db.recipes.find())
-                return render_template("generate_index.html", recipes=recipes)
-
-            # User is not an admin
-            return redirect(url_for("home"))
-
-        # URL username not matching session user
-        # Will not kill session as the force URL may be a mistake.
-        # A user forcing a URL can log in again anyway.
-        return redirect(url_for("home"))
-
-    # Session not true or does not exist.
-    return redirect(url_for("login"))
+    block_force_url_admin(username)
+    if request.method == "POST":
+        mongo.db.recipes.create_index([(
+            "recipe_name", "text"), ("ingredients", "text")])
+        flash("Search Index has been generated")
+    recipes = list(mongo.db.recipes.find())
+    return render_template("generate_index.html", recipes=recipes)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -215,27 +200,15 @@ def delete_recipe(username, recipe_id):
 @app.route("/get_cuisines/<username>")
 def get_cuisines(username):
     # Redirect user if there is a force URL without a session
-    if session:  # If session is true.
-        if username == session["user"]:  # URL username must match session user
-            if username == "admin":
-                cuisines = list(mongo.db.cuisines.find().sort("cuisine_style", 1))
-                # cuisines on LHS passed to temlpate, cuisines on RHS = list(mongo.db above
-                return render_template("cuisines.html", cuisines=cuisines)
-
-            # User is not an admin
-            return redirect(url_for("home"))
-
-        # URL username not matching session user
-        # Will not kill session as the force URL may be a mistake.
-        # A user forcing a URL can log in again anyway.
-        return redirect(url_for("home"))
-
-    # Session not true or does not exist.
-    return redirect(url_for("login"))
+    block_force_url_admin(username)
+    cuisines = list(mongo.db.cuisines.find().sort("cuisine_style", 1))
+    # cuisines on LHS passed to temlpate, cuisines on RHS = list(mongo.db above
+    return render_template("cuisines.html", cuisines=cuisines)
 
 
 @app.route("/add_cuisine", methods=["GET", "POST"])
 def add_cuisine():
+    block_force_url_admin(username)
     if request.method == "POST":
         # check if cuisine already exists in db
         new_style = request.form.get("cuisine_style").lower()
@@ -260,6 +233,7 @@ def add_cuisine():
 
 @app.route("/edit_cuisine/<cuisine_id>", methods=["GET", "POST"])
 def edit_cuisine(cuisine_id):
+    block_force_url_admin(username)
     if request.method == "POST":
         submit = {
             "cuisine_style": request.form.get("cuisine_style")
@@ -280,6 +254,20 @@ def block_force_url(username):
         # URL username not matching session user
         # Will not kill session as the force URL may be a mistake.
         # A user forcing a URL can log in again anyway.
+        return redirect(url_for("home"))
+
+
+def block_force_url_admin(username):
+    if not session:  # If session is false.
+        # Session not true or does not exist.
+        return redirect(url_for("login"))
+    if username != session["user"]:  # URL username must match session user
+        # URL username not matching session user
+        # Will not kill session as the force URL may be a mistake.
+        # A user forcing a URL can log in again anyway.
+        return redirect(url_for("home"))
+    if username != "admin":
+        # User is not an admin
         return redirect(url_for("home"))
 
 
