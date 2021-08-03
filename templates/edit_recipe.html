@@ -59,7 +59,7 @@
                         {{- ingredient }}{% if not loop.last %}{{ ';' }}{% endif %}
                         {%- endfor -%}
                     </textarea>
-                    <label for="ingredients">Ingredients</label>
+                    <label for="ingredients">Ingredients (Enter Ingredients separated by a ; )</label>
                 </div>
             </div>
 
@@ -68,13 +68,13 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
-                    <textarea id="preperation_steps" name="preperation_steps" minlength="5"
+                    <textarea id="preparation_steps" name="preparation_steps" minlength="5"
                         maxlength="200" class="materialize-textarea validate" required>
                         {%- for step in recipe.preparation_steps %}
                         {{- step }}{% if not loop.last %}{{ ';' }}{% endif %}
                         {%- endfor -%}                    
                     </textarea>
-                    <label for="preperation_steps">Preparation steps</label>
+                    <label for="preparation_steps">Preperation Steps (Enter Preperation Steps separated by a ; )</label>
                 </div>
             </div>
 
@@ -89,7 +89,7 @@
                         {{- tool }}{% if not loop.last %}{{ ';' }}{% endif %}
                         {%- endfor -%}                         
                     </textarea>
-                    <label for="tools_required">Tools required</label>
+                    <label for="tools_required">Tools Required (Enter Tools Required separated by a ; )</label>
                 </div>
             </div>
 

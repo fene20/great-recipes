@@ -13,9 +13,9 @@
                     <label for="query">Search Recipes</label>
                 </div>
                 <div class="col s12 m4">
-                    <a href="{{ url_for('get_recipes') }}" class="red btn text-shadow">Reset</a>
-                    <button type="submit" class="light-blue darken-1 btn text-shadow">
-                        <i class="fas fa-search left"></i> Search
+                    <a href="{{ url_for('get_recipes') }}" class="red btn1 btn text-shadow"><i class="icon-hide fas fa-redo left"></i>Reset</a>
+                    <button type="submit" class="light-blue darken-1 btn1 btn text-shadow">
+                        <i class="icon-hide fas fa-search left"></i> Search
                     </button>
                 </div>
             </div>
@@ -62,7 +62,7 @@
 
                     </div>
 
-                    <div class="collapsible-body">
+                    <div class="collapsible-body grey lighten-5">
                         <h5>Ingredients</h5>
                         <ul>
                             {% for ingredient in recipe.ingredients %}

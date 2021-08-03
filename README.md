@@ -346,3 +346,6 @@ null in database ingredients, i.e. not an array.
 Coud not edit a recipe and save it again with no changes.
 AttributeError: 'NoneType' object has no attribute 'split'
 ingredients (but not preperation_steps or tools) in edit_recipe.html was declared as an array with id/name/for="ingredients[]"
+
+Credit stack overflow. Hide icons on small devices.
+https://stackoverflow.com/questions/58232219/how-do-i-remove-font-awesome-icons-on-my-responsive-navbar-when-in-desktop-versi

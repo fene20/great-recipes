@@ -5,24 +5,26 @@
 
 
     <div class="row card-panel grey lighten-5">
-        <form action="{{ url_for('search') }}" method="post" class="col s12">
+        <form action="{{ url_for('search') }}" method="post" class="col s10 m12">
             <div class="row valign-wrapper center-align">
-                <div class="input-field col s12 m8">
-                    <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
+                <div class="input-field col s12 m10">
+                    <i class="icon-hide fas fa-search prefix light-blue-text text-darken-4"></i>
                     <input type="text" name="query" id="query" minlength="3" class="validate" required>
                     <label for="query">Search Recipes</label>
                 </div>
-                <div class="col s12 m4">
-                    <a href="{{ url_for('get_recipes') }}" class="red btn text-shadow">Reset</a>
-                    <button type="submit" class="light-blue darken-1 btn text-shadow">
-                        <i class="fas fa-search left"></i> Search
+                <div class="col s4 m4">
+                    <a href="{{ url_for('get_recipes') }}" class="btn1 red btn text-shadow"><i class="icon-hide fas fa-redo left"></i> Reset</a>
+                    <button type="submit" class="btn1 light-blue darken-1 btn text-shadow">
+                        <i class="icon-hide fas fa-search left"></i> Search
                     </button>
                 </div>
             </div>
         </form>
     </div>
 
+   
+
     <h4 class="light-blue-text text-darken-4 center-align flow-text">Welcome to Great Recipes</h4>
-    <p class="flow-text">I am Flow Text</p>
+    <p class="center-align flow-text">Great Recipes is a database where users can add their own recipes or just search for recipes.</p>
 
 {% endblock %}

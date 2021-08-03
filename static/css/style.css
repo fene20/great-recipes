@@ -1,48 +1,88 @@
 .text-shadow {
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 .flashes h4 {
-    line-height: 2;
+  line-height: 2;
 }
 
 .btn-small {
-    margin: 5px;
+  margin: 5px;
 }
 
 .collapsible-header .col strong {
-    margin: 5px;
-    line-height: 42px;
+  margin: 5px;
+  line-height: 42px;
 }
 
 .brand-logo {
-    margin-left: 10px;
+  margin-left: 10px;
+  /* Prevent logo from wrapping on smaller devices */
+  width: 70%;
 }
 
 /* Materialize footer */
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-
-  main {
-    flex: 1 0 auto;
-  }
-
-  .container i {
-    margin-left: 10px;
-  }
-
-  .page-footer {
-    padding-top: 0px;
-    background-color: #555555;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-
-
-#dummy_footer{
-    height: 50px; 
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
+
+main {
+  flex: 1 0 auto;
+}
+
+.container i {
+  margin-left: 10px;
+}
+
+.page-footer {
+  padding-top: 0px;
+  background-color: #555555;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+
+#dummy_footer {
+  height: 50px;
+}
+
+/* Keep buttons the same width especially when they wrap */
+
+ /* btn1 has an icon until a media max width is reached */
+.btn1 {
+  width: 140px;
+}
+
+
+.btn2 {
+  width: 80px;
+}
+
+
+
+@media screen and (max-width: 1000px){
+
+
+  .brand-logo {
+    margin-left: 2px;
+  }
+
+  /* Credit https://stackoverflow.com/ */
+  .icon-hide {
+    display: none;
+  }
+
+  
+  .btn1 {
+    width: 80px;
+  }
+
+
+
+
+}
+
+

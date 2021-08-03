@@ -13,9 +13,9 @@
                     <label for="query">Search {{ username }}'s Recipes</label>
                 </div>
                 <div class="col s12 m4">
-                    <a href="{{ url_for('my_recipes', username=session['user']) }}" class="red btn text-shadow">Reset</a>
-                    <button type="submit" class="light-blue darken-1 btn text-shadow">
-                        <i class="fas fa-search left"></i> Search
+                    <a href="{{ url_for('my_recipes', username=session['user']) }}" class="btn1 red btn text-shadow"><i class="icon-hide fas fa-redo left"></i>Reset</a>
+                    <button type="submit" class="btn1 light-blue darken-1 btn text-shadow">
+                        <i class="icon-hide fas fa-search left"></i> Search
                     </button>
                 </div>
             </div>
@@ -37,10 +37,10 @@
                             <div class="col s3">
                                 <i class="fas fa-caret-down"></i>
                                 <a href="{{ url_for('edit_recipe', username=session['user'], recipe_id=recipe._id) }}"
-                                    class="btn-small light-blue lighten-1">Edit</a>
+                                    class="btn2 btn-small light-blue lighten-1">Edit</a>
 
                                 <!-- Modal Trigger -->
-                                <a class="btn-small red text-shadow modal-trigger" data-target="{{ recipe._id }}">Delete</a>
+                                <a class="btn2 btn-small red text-shadow modal-trigger" data-target="{{ recipe._id }}">Delete</a>
                                 <!-- Modal Structure -->
                                 <div id="{{ recipe._id }}" class="modal">
                                     <div class="modal-content white-text light-blue darken-4 text-shadow">
@@ -56,7 +56,6 @@
                             </div>
 
                             <div class="col s9">
-                                <!-- Add recipe picture here-->
                                 <strong>{{ recipe.recipe_name }}</strong>
                                 <p>{{ recipe.cuisine_style }} Cuisine</p>
                             </div>
@@ -64,7 +63,7 @@
                         </div>
 
 
-                        <div class="collapsible-body">
+                        <div class="collapsible-body grey lighten-5">
                             <h5>Ingredients</h5>
                             <ul>
                                 {% for ingredient in recipe.ingredients %}
