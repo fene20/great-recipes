@@ -349,3 +349,7 @@ ingredients (but not preperation_steps or tools) in edit_recipe.html was declare
 
 Credit stack overflow. Hide icons on small devices.
 https://stackoverflow.com/questions/58232219/how-do-i-remove-font-awesome-icons-on-my-responsive-navbar-when-in-desktop-versi
+
+
+Error 404 Tutor support
+https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/

@@ -19,7 +19,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-@app.route("/")
+@app.route("/")  # Landing Page
 @app.route("/home")
 def home():
     # list() converts Mongo Cursor Object to a list.
@@ -28,12 +28,16 @@ def home():
     return render_template("home.html", recipes=recipes)
 
 
+# Credit Tutor support
+# https://flask.palletsprojects.com
+# Error 404 page
 @app.errorhandler(404)
 def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('error404.html'), 404
 
 
+# Published recipes Page, available to all users.
 @app.route("/recipes")
 def recipes():
     # list() converts Mongo Cursor Object to a list.
@@ -42,6 +46,7 @@ def recipes():
     return render_template("recipes.html", recipes=recipes)
 
 
+# Generate Mongo DB search Index. Admin function only.
 @app.route("/generate_index/<username>", methods=["GET", "POST"])
 def generate_index(username):
     block_force_url_admin(username)
@@ -53,6 +58,7 @@ def generate_index(username):
     return render_template("generate_index.html", recipes=recipes)
 
 
+# Published recipes search. Available to all users.
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
@@ -60,14 +66,18 @@ def search():
     return render_template("recipes.html", recipes=recipes)
 
 
+# Logged In User search of the recipies that they created.
 @app.route("/search_user/<username>", methods=["GET", "POST"])
 def search_user(username):
     block_force_url(username)
     query = request.form.get("query")
-    recipes = list(mongo.db.recipes.find({"created_by": username, "$text": {"$search": query}}))
-    return render_template("my_recipes.html", username=username, recipes=recipes)
+    recipes = list(mongo.db.recipes.find(
+        {"created_by": username, "$text": {"$search": query}}))
+    return render_template(
+        "my_recipes.html", username=username, recipes=recipes)
 
 
+# Site register function. Available to all users.
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -95,6 +105,7 @@ def register():
     return render_template("register.html")
 
 
+# Site log in function. Available to all users.
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -126,13 +137,17 @@ def login():
     return render_template("login.html")
 
 
+# Logged In User function to list their recipes
 @app.route("/my_recipes/<username>", methods=["GET", "POST"])
 def my_recipes(username):
     block_force_url(username)
-    recipes = list(mongo.db.recipes.find({"created_by": session["user"]}))
-    return render_template("my_recipes.html", username=username, recipes=recipes)
+    recipes = list(mongo.db.recipes.find(
+        {"created_by": session["user"]}))
+    return render_template(
+        "my_recipes.html", username=username, recipes=recipes)
 
 
+# Logout function available to Logged In User.
 @app.route("/logout/<username>")
 def logout(username):
     block_force_url(username)
@@ -142,8 +157,11 @@ def logout(username):
     return redirect(url_for("home"))
 
 
+# Add recipe function available to Logged In User
 @app.route("/add_recipe/<username>", methods=["GET", "POST"])
 def add_recipe(username):
+    print(username)
+    print(session["user"])
     block_force_url(username)
     if request.method == "POST":
         is_published = "yes" if request.form.get("is_published") else "off"
@@ -152,21 +170,25 @@ def add_recipe(username):
             "recipe_name": request.form.get("recipe_name"),
             "picture": request.form.get("picture"),
             # Credit: Tutor support for .split() suggestion
-            "ingredients": [i.strip() for i in request.form.get("ingredients").split(';')],
-            "preparation_steps": [i.strip() for i in request.form.get("preparation_steps").split(';')],
-            "tools_required": [i.strip() for i in request.form.get("tools_required").split(';')],
+            "ingredients": [i.strip() for i in request.form.get(
+                "ingredients").split(';')],
+            "preparation_steps": [i.strip() for i in request.form.get(
+                "preparation_steps").split(';')],
+            "tools_required": [i.strip() for i in request.form.get(
+                "tools_required").split(';')],
             "is_published": is_published,
             "created_by": username
         }
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe Successfully Added")
-        return redirect(url_for("get_recipes"))
+        return redirect(url_for("recipes"))
 
     # IF POST above . . . . else GET here.
     cuisines = mongo.db.cuisines.find().sort("cuisine_style", 1)
     return render_template("add_recipe.html", cuisines=cuisines)
 
 
+# Edit recipe function available to Logged In User.
 @app.route("/edit_recipe/<username>, <recipe_id>", methods=["GET", "POST"])
 def edit_recipe(username, recipe_id):
     block_force_url(username)
@@ -180,9 +202,12 @@ def edit_recipe(username, recipe_id):
             "recipe_name": request.form.get("recipe_name"),
             "picture": request.form.get("picture"),
             # Credit: Tutor support for .split() suggestion
-            "ingredients": [i.strip() for i in request.form.get("ingredients").split(';')],
-            "preparation_steps": [i.strip() for i in request.form.get("preparation_steps").split(';')],
-            "tools_required": [i.strip() for i in request.form.get("tools_required").split(';')],
+            "ingredients": [i.strip() for i in request.form.get(
+                "ingredients").split(';')],
+            "preparation_steps": [i.strip() for i in request.form.get(
+                "preparation_steps").split(';')],
+            "tools_required": [i.strip() for i in request.form.get(
+                "tools_required").split(';')],
             "is_published": is_published,
             "created_by": session["user"]
         }
@@ -192,9 +217,11 @@ def edit_recipe(username, recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     cuisines = mongo.db.cuisines.find().sort("cuisine_style", 1)
     return render_template(
-        "edit_recipe.html", username=username, recipe=recipe, cuisines=cuisines)
+        "edit_recipe.html", username=username, recipe=recipe,
+        cuisines=cuisines)
 
 
+# Delete recipe function available to Logged In User
 @app.route("/delete_recipe/<username>, <recipe_id>")
 def delete_recipe(username, recipe_id):
     block_force_url(username)
@@ -203,15 +230,18 @@ def delete_recipe(username, recipe_id):
     return redirect(url_for('my_recipes', username=session['user']))
 
 
+# List Cuisines. Admin function only.
 @app.route("/cuisines/<username>")
 def cuisines(username):
     # Redirect user if there is a force URL without a session
     block_force_url_admin(username)
     cuisines = list(mongo.db.cuisines.find().sort("cuisine_style", 1))
     # cuisines on LHS passed to temlpate, cuisines on RHS = list(mongo.db above
-    return render_template("cuisines.html", username=username, cuisines=cuisines)
+    return render_template(
+        "cuisines.html", username=username, cuisines=cuisines)
 
 
+# Add Cuisine. Admin function only.
 @app.route("/add_cuisine/<username>", methods=["GET", "POST"])
 def add_cuisine(username):
     block_force_url_admin(username)
@@ -225,18 +255,19 @@ def add_cuisine(username):
         for style in db_styles:
             if style.lower() == new_style:
                 flash("Cuisine already exists")
-                return redirect(url_for("get_cuisines", username=username))
+                return redirect(url_for("cuisines", username=username))
 
         cuisine = {
             "cuisine_style": request.form.get("cuisine_style")
         }
         mongo.db.cuisines.insert_one(cuisine)
         flash("New Cuisine Added")
-        return redirect(url_for("get_cuisines", username=username))
+        return redirect(url_for("cuisines", username=username))
 
     return render_template("add_cuisine.html")
 
 
+# Edit Cuisine. Admin function only.
 @app.route("/edit_cuisine/<username>, <cuisine_id>", methods=["GET", "POST"])
 def edit_cuisine(username, cuisine_id):
     block_force_url_admin(username)
@@ -246,20 +277,22 @@ def edit_cuisine(username, cuisine_id):
         }
         mongo.db.cuisines.update({"_id": ObjectId(cuisine_id)}, submit)
         flash("Cuisine Successfully Updated")
-        return redirect(url_for("get_cuisines", username=username))
+        return redirect(url_for("cuisines", username=username))
 
     cuisine = mongo.db.cuisines.find_one({"_id": ObjectId(cuisine_id)})
     return render_template("edit_cuisine.html", cuisine=cuisine)
 
 
+# Delete Cuisine. Admin function only.
 @app.route("/delete_cuisine/<username>, <cuisine_id>")
 def delete_cuisine(username, cuisine_id):
     block_force_url_admin(username)
     mongo.db.cuisines.remove({"_id": ObjectId(cuisine_id)})
     flash("Cuisine Successfully Deleted")
-    return redirect(url_for("get_cuisines", username=username))
+    return redirect(url_for("cuisines", username=username))
 
 
+# Prevent force URL of functions developed for Logged In Users.
 def block_force_url(username):
     if not session:  # If session is false.
         # Session not true or does not exist.
@@ -271,6 +304,7 @@ def block_force_url(username):
         return redirect(url_for("home"))
 
 
+# Prevent force URL of functions developed for Admin.
 def block_force_url_admin(username):
     if not session:  # If session is false.
         # Session not true or does not exist.
