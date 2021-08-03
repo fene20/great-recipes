@@ -203,8 +203,8 @@ def delete_recipe(username, recipe_id):
     return redirect(url_for('my_recipes', username=session['user']))
 
 
-@app.route("/get_cuisines/<username>")
-def get_cuisines(username):
+@app.route("/cuisines/<username>")
+def cuisines(username):
     # Redirect user if there is a force URL without a session
     block_force_url_admin(username)
     cuisines = list(mongo.db.cuisines.find().sort("cuisine_style", 1))
