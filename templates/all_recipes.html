@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    {% if username == "guest" %}
+    <h3 class="light-blue-text text-darken-4 center-align">Recipes</h3>
+    {% elif username == "admin" %}
+    <h3 class="light-blue-text text-darken-4 center-align">Admin Access to All Recipes</h3>
+    {% else %}
+    <h3 class="light-blue-text text-darken-4 center-align">{{ username }}'s Recipes</h3>
+    {% endif %}
+
+    <div class="row card-panel grey lighten-5">
+
+        {% if username == "guest" %}
+        <form action="{{ url_for('search') }}" method="post" class="col s12">
+        {% else %}
+        <form action="{{ url_for('search_user', username=session['user']) }}" method="post" class="col s12">
+        {% endif %}
+
+            <div class="row valign-wrapper center-align">
+                <div class="input-field col s12 m8">
+                    <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
+                    <input type="text" name="query" id="query" minlength="3" class="validate" required>
+
+                    {% if username == "guest" %}
+                    <label for="query">Search Recipes</label>
+                    {% else %}
+                    <label for="query">Search {{ username }}'s Recipes</label>
+                    {% endif %}
+
+                </div>
+                <div class="col s12 m4">
+
+                    {% if username == "guest" %}
+                    <a href="{{ url_for('recipes') }}" class="red btn1 btn text-shadow"><i class="icon-hide fas fa-redo left"></i>Reset</a>
+                    {% else %}
+                    <a href="{{ url_for('my_recipes', username=session['user']) }}" class="btn1 red btn text-shadow"><i class="icon-hide fas fa-redo left"></i>Reset</a>
+                    {% endif %}
+
+                    {% if username == "guest" %}
+                        <button type="submit" class="light-blue darken-1 btn1 btn text-shadow">
+                            <i class="icon-hide fas fa-search left"></i> Search
+                        </button>
+                    {% else %}
+                        <button type="submit" class="btn1 light-blue darken-1 btn text-shadow">
+                            <i class="icon-hide fas fa-search left"></i> Search
+                        </button>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% if recipes|length > 0 %}
+  
+        <ul class="collapsible">
+            {% for recipe in recipes %}
+            
+          
+                    <li>
+                        <div class="collapsible-header white-text light-blue darken-4 text-shadow">
+
+                            <div class="col s2">
+                                <img src="{{ recipe.picture }}" alt="Recipe Image" width="90">
+                                <!-- class="responsive-img" -->
+                            </div>
+
+                            <div class="col s3">
+                                <i class="fas fa-caret-down"></i>
+                                {% if username == "guest" %}
+                                    <!-- No edit functionality -->
+                                {% else %}
+                                <a href="{{ url_for('edit_recipe', username=session['user'], recipe_id=recipe._id) }}"
+                                    class="btn2 btn-small light-blue lighten-1">Edit</a>
+
+                                <!-- Modal Trigger -->
+                                <a class="btn2 btn-small red text-shadow modal-trigger" data-target="{{ recipe._id }}">Delete</a>
+                                <!-- Modal Structure -->
+                                <div id="{{ recipe._id }}" class="modal">
+                                    <div class="modal-content white-text light-blue darken-4 text-shadow">
+                                        <h4>Confirmation</h4>
+                                        <p>Are you sure you would like to delete the <strong>{{ recipe.recipe_name }}</strong> recipe?</p>
+                                    </div>
+                                    <div class="modal-footer white-text light-blue darken-4 text-shadow">
+                                        <a href="{{ url_for('my_recipes', username=session['user']) }}" class="modal-close btn-small light-blue lighten-1">No, Cancel</a>    
+                                        <a href="{{ url_for('delete_recipe', username=session['user'], recipe_id=recipe._id) }}" class="modal-close btn-small red text-shadow">Yes, Delete</a>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                            </div>
+
+                            <div class="col s9">
+                                <strong>{{ recipe.recipe_name }}</strong>
+                                <p>{{ recipe.cuisine_style }} Cuisine</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="collapsible-body grey lighten-5">
+                            <h5>Ingredients</h5>
+                            <ul>
+                                {% for ingredient in recipe.ingredients %}
+                                    <li>{{ ingredient }}</li>
+                                {% endfor %}
+                            </ul>
+                            
+                            <h5>Preparation Steps</h5>
+                            <ol>
+                                {% for step in recipe.preparation_steps %}
+                                    <li>{{ step }}</li>
+                                {% endfor %}
+                            </ol>       
+                            
+                            <h5>Tools Required</h5>
+                            <ul>
+                                {% for tool in recipe.tools_required %}
+                                    <li>{{ tool }}</li>
+                                {% endfor %}
+                            </ul>
+    
+                            <p><em>by: {{ recipe.created_by }}</em></p>
+                        </div>
+                    </li>
+              
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3 class="red-text text-darken-4 center-align">No Results Found</h3>    
+    {% endif %}
+
+{% endblock %}

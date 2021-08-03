@@ -24,8 +24,7 @@ mongo = PyMongo(app)
 def home():
     # list() converts Mongo Cursor Object to a list.
     # I.e. so commented out code cannot be read by Jinja
-    recipes = list(mongo.db.recipes.find({"is_published": "yes"}))
-    return render_template("home.html", recipes=recipes)
+    return render_template("home.html")
 
 
 # Credit Tutor support
@@ -43,7 +42,8 @@ def recipes():
     # list() converts Mongo Cursor Object to a list.
     # I.e. so commented out code cannot be read by Jinja
     recipes = list(mongo.db.recipes.find({"is_published": "yes"}))
-    return render_template("recipes.html", recipes=recipes)
+    return render_template(
+        "all_recipes.html", username="guest", recipes=recipes)
 
 
 # Generate Mongo DB search Index. Admin function only.
@@ -58,12 +58,14 @@ def generate_index(username):
     return render_template("generate_index.html", recipes=recipes)
 
 
-# Published recipes search. Available to all users.
+# Search published recipes search. Available to all users.
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
-    recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
-    return render_template("recipes.html", recipes=recipes)
+    recipes = list(mongo.db.recipes.find(
+        {"is_published": "yes", "$text": {"$search": query}}))
+    return render_template(
+        "all_recipes.html", username="guest", recipes=recipes)
 
 
 # Logged In User search of the recipies that they created.
@@ -74,7 +76,7 @@ def search_user(username):
     recipes = list(mongo.db.recipes.find(
         {"created_by": username, "$text": {"$search": query}}))
     return render_template(
-        "my_recipes.html", username=username, recipes=recipes)
+        "all_recipes.html", username=username, recipes=recipes)
 
 
 # Site register function. Available to all users.
@@ -144,7 +146,16 @@ def my_recipes(username):
     recipes = list(mongo.db.recipes.find(
         {"created_by": session["user"]}))
     return render_template(
-        "my_recipes.html", username=username, recipes=recipes)
+        "all_recipes.html", username=username, recipes=recipes)
+
+
+# Admin function to list all recipes in the Database
+@app.route("/admin_recipes/<username>", methods=["GET", "POST"])
+def admin_recipes(username):
+    block_force_url_admin(username)
+    recipes = list(mongo.db.recipes.find())
+    return render_template(
+        "all_recipes.html", username=username, recipes=recipes)
 
 
 # Logout function available to Logged In User.
@@ -213,6 +224,7 @@ def edit_recipe(username, recipe_id):
         }
         mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, submit)
         flash("Recipe Successfully Updated")
+        return redirect(url_for('my_recipes', username=session['user']))
 
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     cuisines = mongo.db.cuisines.find().sort("cuisine_style", 1)
