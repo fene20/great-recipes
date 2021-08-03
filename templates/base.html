@@ -32,7 +32,7 @@
                         <li><a href="{{ url_for('my_recipes', username=session['user']) }}">My Recipes</a></li>
                         <li><a href="{{ url_for('add_recipe', username=session['user']) }}">Add Recipe</a></li>
                         {% if session.user|lower == "admin"|lower %}
-                            <li><a href="{{ url_for('get_recipes') }}">Published Recipes</a></li>
+                            <li><a href="{{ url_for('recipes') }}">Published Recipes</a></li>
                             <li><a href="{{ url_for('get_cuisines', username=session['user']) }}">Manage Cuisines</a></li>
                             <li><a href="{{ url_for('generate_index', username=session['user']) }}">Generate Search Index</a></li>
                         {% endif %}
@@ -55,7 +55,7 @@
                 <li><a href="{{ url_for('my_recipes', username=session['user']) }}">My Recipes</a></li>
                 <li><a href="{{ url_for('add_recipe', username=session['user']) }}">Add Recipe</a></li>
                 {% if session.user|lower == "admin"|lower %}
-                    <li><a href="{{ url_for('get_recipes') }}">Published Recipes</a></li>
+                    <li><a href="{{ url_for('recipes') }}">Published Recipes</a></li>
                     <li><a href="{{ url_for('get_cuisines', username=session['user']) }}">Manage Cuisines</a></li>
                     <li><a href="{{ url_for('generate_index', username=session['user']) }}">Generate Search Index</a></li>
                 {% endif %}

@@ -34,8 +34,8 @@ def page_not_found(e):
     return render_template('error404.html'), 404
 
 
-@app.route("/get_recipes")
-def get_recipes():
+@app.route("/recipes")
+def recipes():
     # list() converts Mongo Cursor Object to a list.
     # I.e. so commented out code cannot be read by Jinja
     recipes = list(mongo.db.recipes.find({"is_published": "yes"}))
