@@ -17,8 +17,8 @@
 
 .brand-logo {
   margin-left: 10px;
-  /* Prevent logo from wrapping on smaller devices */
-  width: 70%;
+  /* Prevent logo from wrapping on smaller devices
+  width: 70%;  */
 }
 
 /* Materialize footer */

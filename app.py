@@ -43,7 +43,7 @@ def recipes():
     # I.e. so commented out code cannot be read by Jinja
     recipes = list(mongo.db.recipes.find({"is_published": "yes"}))
     return render_template(
-        "all_recipes.html", username="guest", recipes=recipes)
+        "all_recipes.html", username="guest", recipes=recipes, access="pub")
 
 
 # Generate Mongo DB search Index. Admin function only.
@@ -65,7 +65,7 @@ def search():
     recipes = list(mongo.db.recipes.find(
         {"is_published": "yes", "$text": {"$search": query}}))
     return render_template(
-        "all_recipes.html", username="guest", recipes=recipes)
+        "all_recipes.html", username="guest", recipes=recipes, access="pub")
 
 
 # Logged In User search of the recipies that they created.
@@ -76,7 +76,7 @@ def search_user(username):
     recipes = list(mongo.db.recipes.find(
         {"created_by": username, "$text": {"$search": query}}))
     return render_template(
-        "all_recipes.html", username=username, recipes=recipes)
+        "all_recipes.html", username=username, recipes=recipes, access="my")
 
 
 # Site register function. Available to all users.
@@ -146,7 +146,7 @@ def my_recipes(username):
     recipes = list(mongo.db.recipes.find(
         {"created_by": session["user"]}))
     return render_template(
-        "all_recipes.html", username=username, recipes=recipes)
+        "all_recipes.html", username=username, recipes=recipes, access="my")
 
 
 # Admin function to list all recipes in the Database
@@ -155,7 +155,7 @@ def admin_recipes(username):
     block_force_url_admin(username)
     recipes = list(mongo.db.recipes.find())
     return render_template(
-        "all_recipes.html", username=username, recipes=recipes)
+        "all_recipes.html", username=username, recipes=recipes, access="all")
 
 
 # Logout function available to Logged In User.
@@ -171,8 +171,6 @@ def logout(username):
 # Add recipe function available to Logged In User
 @app.route("/add_recipe/<username>", methods=["GET", "POST"])
 def add_recipe(username):
-    print(username)
-    print(session["user"])
     block_force_url(username)
     if request.method == "POST":
         is_published = "yes" if request.form.get("is_published") else "off"
