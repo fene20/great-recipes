@@ -353,3 +353,8 @@ https://stackoverflow.com/questions/58232219/how-do-i-remove-font-awesome-icons-
 
 Error 404 Tutor support
 https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+
+
+42px margin left on searh window in all_recipes.html
+Tried new class on input and label - did not work.
+Tutor support #input-field worked.

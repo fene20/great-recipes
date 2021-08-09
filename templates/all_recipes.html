@@ -1,68 +1,66 @@
 {% extends "base.html" %}
 {% block content %}
 
-
+    <h3 class="light-blue-text text-darken-4 center-align recipe-text">
     {% if username == "guest" %}
-    <h3 class="light-blue-text text-darken-4 center-align">Recipes</h3>
+        Recipes
     {% elif username == "admin" and access == "all" %}
-    <h3 class="light-blue-text text-darken-4 center-align">Admin Access to All Recipes</h3>
+        Admin Access to All Recipes
     {% elif username == "admin" and access == "my" %}
-    <h3 class="light-blue-text text-darken-4 center-align">Admin Access to Admin's Recipes</h3>
+        Admin Access to Admin's Recipes
     {% else %}
-    <h3 class="light-blue-text text-darken-4 center-align">{{ username }}'s Recipes</h3>
+        {{ username }}'s Recipes
     {% endif %}
+    </h3>
 
     <div class="row card-panel grey lighten-5">
 
 
-
         {% if username == "guest" %}
-        <form action="{{ url_for('search') }}" method="post" class="col s12">
+        <form action="{{ url_for('search') }}" method="post" class="col s12 m12">
         {% elif username == "admin" and access == "all" %}
-        <form action="{{ url_for('admin_recipes', username=session['user']) }}" method="post" class="col s12">
+        <form action="{{ url_for('admin_recipes', username=session['user']) }}" method="post" class="col s12 m12">
         {% elif username == "admin" and access == "my" %}
-        <form action="{{ url_for('search_user', username=session['user']) }}" method="post" class="col s12">
+        <form action="{{ url_for('search_user', username=session['user']) }}" method="post" class="col s12 m12">
         {% else %}
-        <form action="{{ url_for('search_user', username=session['user']) }}" method="post" class="col s12">
+        <form action="{{ url_for('search_user', username=session['user']) }}" method="post" class="col s12 m12">
         {% endif %}
 
-            <div class="row valign-wrapper center-align">
-                <div class="input-field col s12 m8">
-                    <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
+            <div id="search-window" class="row valign-wrapper center-align">
+
+                <div class="input-field col s8 m8">
+                    <i class="fas fa-search prefix light-blue-text text-darken-4 icon-hide"></i>
                     <input type="text" name="query" id="query" minlength="3" class="validate" required>
 
-
+                    <label for="query">
                     {% if username == "guest" %}
-                    <label for="query">Search Recipes</label>
+                        Search Recipes
                     {% elif username == "admin" and access == "all" %}
-                    <label for="query">Search ALL Recipes</label>
+                        Search ALL Recipes
                     {% elif username == "admin" and access == "my" %}
-                    <label for="query">Search Admin Recipes</label>
+                        Search Admin Recipes
                     {% else %}
-                    <label for="query">Search {{ username }}'s Recipes</label>
+                        Search {{ username }}'s Recipes
                     {% endif %}
-
-
-
-
+                    </label>
                 </div>
-                <div class="col s12 m4">
 
+                <div class="col s4 m4">
 
                     {% if username == "guest" %}
-                    <a href="{{ url_for('recipes') }}" class="red btn1 btn text-shadow"><i class="icon-hide fas fa-redo left"></i>Reset</a>
+                        <a href="{{ url_for('recipes') }}" class="red btn1 btn text-shadow">
                     {% elif username == "admin" and access == "all" %}
-                    <a href="{{ url_for('admin_recipes', username=session['user']) }}" class="btn1 red btn text-shadow"><i class="icon-hide fas fa-redo left"></i>Reset</a>
+                        <a href="{{ url_for('admin_recipes', username=session['user']) }}" class="btn1 red btn text-shadow">
                     {% elif username == "admin" and access == "my" %}
-                    <a href="{{ url_for('my_recipes', username=session['user']) }}" class="btn1 red btn text-shadow"><i class="icon-hide fas fa-redo left"></i>Reset</a>
+                        <a href="{{ url_for('my_recipes', username=session['user']) }}" class="btn1 red btn text-shadow">
                     {% else %}
-                    <a href="{{ url_for('my_recipes', username=session['user']) }}" class="btn1 red btn text-shadow"><i class="icon-hide fas fa-redo left"></i>Reset</a>
+                        <a href="{{ url_for('my_recipes', username=session['user']) }}" class="btn1 red btn text-shadow">
                     {% endif %}
-
+                    <i class="icon-hide fas fa-redo left"></i>Reset</a>
 
 
                     <button type="submit" class="light-blue darken-1 btn1 btn text-shadow">
-                        <i class="icon-hide fas fa-search left"></i> Search
+                        <i class="icon-hide fas fa-search left prefix"></i> Search
                     </button>
                  
                   
@@ -104,7 +102,7 @@
                                 <a class="btn2 btn-small red text-shadow modal-trigger" data-target="{{ recipe._id }}">Delete</a>
                                 {% else %}
                                 <a href="{{ url_for('edit_recipe', username=session['user'], recipe_id=recipe._id) }}"
-                                    class="btn2 btn-small light-blue lighten-1">Edit</a>    
+                                    class="btn2 btn-small light-blue lighten-1">Edit</a>  
                                 <!-- Modal Trigger -->
                                 <a class="btn2 btn-small red text-shadow modal-trigger" data-target="{{ recipe._id }}">Delete</a>
                                 {% endif %}

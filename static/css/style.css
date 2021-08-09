@@ -51,7 +51,7 @@ main {
 
 /* Keep buttons the same width especially when they wrap */
 
- /* btn1 has an icon until a media max width is reached */
+ /* btn1 has an icon until a media max width is reached where the icon is not displayed */
 .btn1 {
   width: 140px;
 }
@@ -75,14 +75,81 @@ main {
     display: none;
   }
 
-  
+ 
   .btn1 {
-    width: 80px;
+    width: 100px;
+  }
+
+}
+
+
+
+@media screen and (max-width: 600px){
+ 
+
+  .card-panel {
+    /* Set to 24px by materialize */
+       padding: 10px;
+   }
+
+/* .search-window id added */
+  /* Credit: Tutor support [type="text"] added */
+  #search-window input[type="text"],
+  #search-window label {
+    margin: 0;
+    padding: 0;
   }
 
 
+
+  #search-window button,
+  #search-window a {
+    padding: 0px 0px;
+  }
+
+  .input-field #query{
+   float: left;
+  }
+
+ 
+
+  .btn1{
+    /* text-align: center; */
+    font-size: 12px;
+  }
 
 
 }
 
 
+
+@media screen and (max-width: 450px){
+
+  .nav-wrapper .brand-logo {
+    font-size: 20px;
+  }
+
+  .input-field label {
+    font-size: 10px;
+   }
+
+  .recipe-text{
+  margin: 10px 0px;
+  }
+
+  .btn1 {
+    width: 60px;
+  }
+
+  /* Flash header */
+  h4 { 
+    font-size: 30px;
+    margin: 10px 0px;
+  }
+
+  h3 {
+    font-size: 30px;
+  }
+
+
+}
