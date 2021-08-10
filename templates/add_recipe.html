@@ -82,7 +82,7 @@
                             Save Recipe and finish later
                             <input type="checkbox" id="is_published" name="is_published"> 
                             <span class="lever"></span>
-                            Upload Recipe to Website
+                                Upload Recipe to Website
                         </label>
                     </div>  
                 </div>
@@ -93,10 +93,10 @@
             <div class="row">
                 <div class="col s12 center-align">
                     <a href="{{ url_for('my_recipes', username=session['user']) }}" class="waves-effect btn-large red text-shadow">
-                        Cancel <i class="fas fa-times-circle right"></i>
+                        Cancel <i class="icon-hide fas fa-times-circle right"></i>
                     </a>
                     <button type="submit" class="waves-effect btn-large light-blue darken-1 text-shadow">
-                        Add Recipe <i class="fas fa-plus-square right"></i>
+                        Add Recipe <i class="icon-hide fas fa-plus-square right"></i>
                     </button>
                 </div>
             </div>
