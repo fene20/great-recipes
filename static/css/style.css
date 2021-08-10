@@ -44,7 +44,6 @@ main {
   width: 100%;
 }
 
-
 #dummy_footer {
   height: 50px;
 }
@@ -54,20 +53,44 @@ main {
  /* btn1 has an icon until a media max width is reached where the icon is not displayed */
 .btn1 {
   width: 140px;
+  margin: 5px;
 }
 
 
-.btn2 {
+.btn2, .btn3 {
   width: 80px;
 }
 
+#from-image-to-dropdown {
+  float: left;
+}
 
+#from-image-to-dropdown #recipe-image,
+#from-image-to-dropdown #pull-down,
+#from-image-to-dropdown #edit-and-delete {
+  float: left;
+}
+
+/* Target the container here */
+.collapsible-header {
+  display: flex;
+  flex-direction: row;
+}
+
+
+#name-and-cuisine strong {
+  margin: 0;
+}
+
+#name-and-cuisine p {
+  margin: 5px 0px;
+}
 
 @media screen and (max-width: 1000px){
 
 
   .brand-logo {
-    margin-left: 2px;
+    margin-left: 3px;
   }
 
   /* Credit https://stackoverflow.com/ */
@@ -79,6 +102,17 @@ main {
   .btn1 {
     width: 100px;
   }
+
+  #edit-and-delete .btn2 {
+    float: left;
+  }
+
+  #edit-and-delete .btn3 {
+    float: left;
+    clear: left;
+  }
+
+
 
 }
 
@@ -111,13 +145,26 @@ main {
    float: left;
   }
 
- 
 
   .btn1{
     /* text-align: center; */
     font-size: 12px;
   }
 
+
+  /* .collapsible-header #from-image-to-delete {
+    float: left;
+  }
+
+  .collapsible-header #name-and-cuisine {
+    float: left;
+    clear: left;
+  } */
+
+
+  .collapsible-header {
+    flex-direction: column;
+  }
 
 }
 
@@ -151,5 +198,8 @@ main {
     font-size: 30px;
   }
 
+  #pull-down i {
+    margin: 0px 2px;
+  }
 
 }

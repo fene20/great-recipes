@@ -358,3 +358,21 @@ https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
 42px margin left on searh window in all_recipes.html
 Tried new class on input and label - did not work.
 Tutor support #input-field worked.
+
+cuisine and recipe name not wrapping with col s12
+Tutor support added 
+
+.collapsible-header {
+  display: flex;
+  flex-direction: row;
+}
+
+and
+
+  .collapsible-header {
+    flex-direction: column;
+  }
+
+
+after.
+
