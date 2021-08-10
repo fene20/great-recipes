@@ -47,18 +47,18 @@
                 <div class="col s4 m4">
 
                     {% if username == "guest" %}
-                        <a href="{{ url_for('recipes') }}" class="red btn1 btn text-shadow">
+                        <a href="{{ url_for('recipes') }}" class="waves-effect red btn1 btn text-shadow">
                     {% elif username == "admin" and access == "all" %}
-                        <a href="{{ url_for('admin_recipes', username=session['user']) }}" class="btn1 red btn text-shadow">
+                        <a href="{{ url_for('admin_recipes', username=session['user']) }}" class="waves-effect btn1 red btn text-shadow">
                     {% elif username == "admin" and access == "my" %}
-                        <a href="{{ url_for('my_recipes', username=session['user']) }}" class="btn1 red btn text-shadow">
+                        <a href="{{ url_for('my_recipes', username=session['user']) }}" class="waves-effect btn1 red btn text-shadow">
                     {% else %}
-                        <a href="{{ url_for('my_recipes', username=session['user']) }}" class="btn1 red btn text-shadow">
+                        <a href="{{ url_for('my_recipes', username=session['user']) }}" class="waves-effect btn1 red btn text-shadow">
                     {% endif %}
                     <i class="icon-hide fas fa-redo left"></i>Reset</a>
 
 
-                    <button type="submit" class="light-blue darken-1 btn1 btn text-shadow">
+                    <button type="submit" class="waves-effect light-blue darken-1 btn1 btn text-shadow">
                         <i class="icon-hide fas fa-search left prefix"></i> Search
                     </button>
                  
@@ -89,19 +89,19 @@
                                     <!-- No edit functionality -->
                                     {% elif username == "admin" and access == "all" %}
                                     <a href="{{ url_for('edit_recipe', username=session['user'], recipe_id=recipe._id) }}"
-                                        class="btn2 btn-small light-blue lighten-1">Edit</a> 
+                                        class="waves-effect btn2 btn-small light-blue lighten-1">Edit</a> 
                                     <!-- Modal Trigger -->
-                                    <a class="btn3 btn-small red text-shadow modal-trigger" data-target="{{ recipe._id }}">Delete</a>  
+                                    <a class="waves-effect btn3 btn-small red text-shadow modal-trigger" data-target="{{ recipe._id }}">Delete</a>  
                                     {% elif username == "admin" and access == "my" %}
                                     <a href="{{ url_for('edit_recipe', username=session['user'], recipe_id=recipe._id) }}"
-                                        class="btn2 btn-small light-blue lighten-1">Edit</a>    
+                                        class="waves-effect btn2 btn-small light-blue lighten-1">Edit</a>    
                                     <!-- Modal Trigger -->
-                                    <a class="btn3 btn-small red text-shadow modal-trigger" data-target="{{ recipe._id }}">Delete</a>
+                                    <a class="waves-effect btn3 btn-small red text-shadow modal-trigger" data-target="{{ recipe._id }}">Delete</a>
                                     {% else %}
                                     <a href="{{ url_for('edit_recipe', username=session['user'], recipe_id=recipe._id) }}"
-                                        class="btn2 btn-small light-blue lighten-1">Edit</a>  
+                                        class="waves-effect btn2 btn-small light-blue lighten-1">Edit</a>  
                                     <!-- Modal Trigger -->
-                                    <a class="btn3 btn-small red text-shadow modal-trigger" data-target="{{ recipe._id }}">Delete</a>
+                                    <a class="waves-effect btn3 btn-small red text-shadow modal-trigger" data-target="{{ recipe._id }}">Delete</a>
                                     {% endif %}
 
                                     <!-- Modal Structure -->
@@ -111,8 +111,8 @@
                                             <p>Are you sure you would like to delete the <strong>{{ recipe.recipe_name }}</strong> recipe?</p>
                                         </div>
                                         <div class="modal-footer white-text light-blue darken-4 text-shadow">
-                                            <a href="{{ url_for('my_recipes', username=session['user']) }}" class="modal-close btn-small light-blue lighten-1">No, Cancel</a>    
-                                            <a href="{{ url_for('delete_recipe', username=session['user'], recipe_id=recipe._id) }}" class="modal-close btn-small red text-shadow">Yes, Delete</a>
+                                            <a href="{{ url_for('my_recipes', username=session['user']) }}" class="waves-effect modal-close btn-small light-blue lighten-1">No, Cancel</a>    
+                                            <a href="{{ url_for('delete_recipe', username=session['user'], recipe_id=recipe._id) }}" class="waves-effect modal-close btn-small red text-shadow">Yes, Delete</a>
                                         </div>
                                     </div>
                                 
