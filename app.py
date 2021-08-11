@@ -36,7 +36,7 @@ def page_not_found(e):
     return render_template('error404.html'), 404
 
 
-# Published recipes Page, available to all users.
+# Published recipes Page, available to all Readers/Users.
 @app.route("/recipes")
 def recipes():
     # list() converts Mongo Cursor Object to a list.
@@ -58,7 +58,7 @@ def generate_index(username):
     return render_template("generate_index.html", recipes=recipes)
 
 
-# Search published recipes search. Available to all users.
+# Search published recipes search. Available to all Readers/Users.
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
@@ -68,7 +68,7 @@ def search():
         "all_recipes.html", username="guest", recipes=recipes, access="pub")
 
 
-# Logged In User search of the recipies that they created.
+# User search of the recipies that they created.
 @app.route("/search_user/<username>", methods=["GET", "POST"])
 def search_user(username):
     block_force_url(username)
@@ -79,7 +79,7 @@ def search_user(username):
         "all_recipes.html", username=username, recipes=recipes, access="my")
 
 
-# Site register function. Available to all users.
+# Site register function. Available to all Readers.
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -107,7 +107,7 @@ def register():
     return render_template("register.html")
 
 
-# Site log in function. Available to all users.
+# Site log in function. Available to all Users.
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -139,7 +139,7 @@ def login():
     return render_template("login.html")
 
 
-# Logged In User function to list their recipes
+# User function to list their recipes
 @app.route("/my_recipes/<username>", methods=["GET", "POST"])
 def my_recipes(username):
     block_force_url(username)
@@ -158,7 +158,7 @@ def admin_recipes(username):
         "all_recipes.html", username=username, recipes=recipes, access="all")
 
 
-# Logout function available to Logged In User.
+# Logout function available to Users.
 @app.route("/logout/<username>")
 def logout(username):
     block_force_url(username)
@@ -168,7 +168,7 @@ def logout(username):
     return redirect(url_for("home"))
 
 
-# Add recipe function available to Logged In User
+# Add recipe function available to Users.
 @app.route("/add_recipe/<username>", methods=["GET", "POST"])
 def add_recipe(username):
     block_force_url(username)
@@ -197,7 +197,7 @@ def add_recipe(username):
     return render_template("add_recipe.html", cuisines=cuisines)
 
 
-# Edit recipe function available to Logged In User.
+# Edit recipe function available to Users.
 @app.route("/edit_recipe/<username>, <recipe_id>", methods=["GET", "POST"])
 def edit_recipe(username, recipe_id):
     block_force_url(username)
@@ -231,7 +231,7 @@ def edit_recipe(username, recipe_id):
         cuisines=cuisines)
 
 
-# Delete recipe function available to Logged In User
+# Delete recipe function available to Users.
 @app.route("/delete_recipe/<username>, <recipe_id>")
 def delete_recipe(username, recipe_id):
     block_force_url(username)
@@ -302,7 +302,7 @@ def delete_cuisine(username, cuisine_id):
     return redirect(url_for("cuisines", username=username))
 
 
-# Prevent force URL of functions developed for Logged In Users.
+# Prevent force URL of functions developed for Users.
 def block_force_url(username):
     if not session:  # If session is false.
         # Session not true or does not exist.

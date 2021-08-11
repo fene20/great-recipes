@@ -1,45 +1,51 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="light-blue-text text-darken-4 center-align">Manage Cuisines</h3>
+<h3 class="light-blue-text text-darken-4 center-align">Manage Cuisines</h3>
 
-    <div class="row">
-        <div class="col s12 center-align">
-            <a href="{{ url_for('add_cuisine', username=session['user']) }}" class="waves-effect btn-large light-blue darken-2 text-shadow">
-                Add Cuisine <i class="fas fa-plus-square right"></i>
-            </a>
-        </div>
+<div class="row">
+    <div class="col s12 center-align">
+        <a href="{{ url_for('add_cuisine', username=session['user']) }}"
+            class="waves-effect btn-large light-blue darken-2 text-shadow">
+            Add Cuisine <i class="icon-hide fas fa-plus-square right"></i>
+        </a>
     </div>
+</div>
 
-    <div class="row">
-        {% for cuisine in cuisines %}
-            <!-- 12 spaces on a (s)mall device and 3 spaces on a (m)edium device-->
-            <div class="col s12 m3">
-                <div class="card light-blue darken-4 text-shadow center-align">
-                    <div class="card-content white-text">
-                        <span class="card-title">{{ cuisine.cuisine_style }}</span>
+<div class="row">
+    {% for cuisine in cuisines %}
+    <!-- 12 spaces on a (s)mall device and 3 spaces on a (m)edium device-->
+    <div class="col s12 m3">
+        <div class="card light-blue darken-4 text-shadow center-align">
+            <div class="card-content white-text">
+                <span class="card-title">{{ cuisine.cuisine_style }}</span>
+            </div>
+            <div class="card-action">
+                <a href="{{ url_for('edit_cuisine', username=session['user'], cuisine_id=cuisine._id) }}"
+                    class="waves-effect btn2 btn green accent-4">Edit</a>
+                <!-- Modal Trigger -->
+                <a class="waves-effect btn3 btn red text-shadow modal-trigger"
+                    data-target="{{ cuisine._id }}">Delete</a>
+                <!-- Modal Structure -->
+                <div id="{{ cuisine._id }}" class="modal">
+                    <div class="modal-content white-text light-blue darken-4 text-shadow">
+                        <h4>Confirmation</h4>
+                        <p>Are you sure you would like to delete the <strong>{{ cuisine.cuisine_style }}</strong>
+                            cuisine?</p>
                     </div>
-                    <div class="card-action">
-                        <a href="{{ url_for('edit_cuisine', username=session['user'], cuisine_id=cuisine._id) }}" class="waves-effect btn2 btn green accent-4">Edit</a>
-                        <!-- Modal Trigger -->
-                        <a class="waves-effect btn3 btn red text-shadow modal-trigger" data-target="{{ cuisine._id }}">Delete</a>
-                        <!-- Modal Structure -->
-                        <div id="{{ cuisine._id }}" class="modal">
-                            <div class="modal-content white-text light-blue darken-4 text-shadow">
-                                <h4>Confirmation</h4>
-                                <p>Are you sure you would like to delete the <strong>{{ cuisine.cuisine_style }}</strong> cuisine?</p>
-                            </div>
-                            <div class="modal-footer white-text light-blue darken-4 text-shadow">
-                                <a href="{{ url_for('cuisines', username=session['user']) }}" class="waves-effect modal-close btn-small light-blue lighten-1">No, Cancel</a>    
-                                <a href="{{ url_for('delete_cuisine', username=session['user'], cuisine_id=cuisine._id) }}" class="waves-effect modal-close btn-small red text-shadow">Yes, Delete</a>
-                            </div>
-                        </div>
-
-
+                    <div class="modal-footer white-text light-blue darken-4 text-shadow">
+                        <a href="{{ url_for('cuisines', username=session['user']) }}"
+                            class="waves-effect modal-close btn-small light-blue lighten-1">No, Cancel</a>
+                        <a href="{{ url_for('delete_cuisine', username=session['user'], cuisine_id=cuisine._id) }}"
+                            class="waves-effect modal-close btn-small red text-shadow">Yes, Delete</a>
                     </div>
                 </div>
+
+
             </div>
-        {% endfor %}
+        </div>
     </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

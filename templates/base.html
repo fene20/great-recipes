@@ -29,17 +29,24 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a class="waves-effect" href="{{ url_for('home') }}">Home</a></li>
                     {% if session.user %}
-                        <li><a class="waves-effect" href="{{ url_for('my_recipes', username=session['user']) }}">My Recipes</a></li>
-                        <li><a class="waves-effect" href="{{ url_for('add_recipe', username=session['user']) }}">Add Recipe</a></li>
-                        {% if session.user|lower == "admin"|lower %}
-                            <li><a class="waves-effect" href="{{ url_for('admin_recipes', username=session['user']) }}">All Recipes</a></li>
-                            <li><a class="waves-effect" href="{{ url_for('cuisines', username=session['user']) }}">Manage Cuisines</a></li>
-                            <li><a class="waves-effect" href="{{ url_for('generate_index', username=session['user']) }}">Generate Search Index</a></li>
-                        {% endif %}
-                        <li><a class="waves-effect" href="{{ url_for('logout', username=session['user']) }}">Log Out</a></li>
+                    <li><a class="waves-effect" href="{{ url_for('my_recipes', username=session['user']) }}">My
+                            Recipes</a></li>
+                    <li><a class="waves-effect" href="{{ url_for('add_recipe', username=session['user']) }}">Add
+                            Recipe</a></li>
+                    {% if session.user|lower == "admin"|lower %}
+                    <li><a class="waves-effect" href="{{ url_for('admin_recipes', username=session['user']) }}">All
+                            Recipes</a></li>
+                    <li><a class="waves-effect" href="{{ url_for('cuisines', username=session['user']) }}">Manage
+                            Cuisines</a></li>
+                    <li><a class="waves-effect"
+                            href="{{ url_for('generate_index', username=session['user']) }}">Generate Search Index</a>
+                    </li>
+                    {% endif %}
+                    <li><a class="waves-effect" href="{{ url_for('logout', username=session['user']) }}">Log Out</a>
+                    </li>
                     {% else %}
-                        <li><a class="waves-effect" href="{{ url_for('login') }}">Log In</a></li>
-                        <li><a class="waves-effect" href="{{ url_for('register') }}">Register</a></li>
+                    <li><a class="waves-effect" href="{{ url_for('login') }}">Log In</a></li>
+                    <li><a class="waves-effect" href="{{ url_for('register') }}">Register</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -52,17 +59,20 @@
             </li>
             <li><a class="waves-effect" href="{{ url_for('home') }}">Home</a></li>
             {% if session.user %}
-                <li><a class="waves-effect" href="{{ url_for('my_recipes', username=session['user']) }}">My Recipes</a></li>
-                <li><a class="waves-effect" href="{{ url_for('add_recipe', username=session['user']) }}">Add Recipe</a></li>
-                {% if session.user|lower == "admin"|lower %}
-                <li><a class="waves-effect" href="{{ url_for('admin_recipes', username=session['user']) }}">All Recipes</a></li>
-                    <li><a class="waves-effect" href="{{ url_for('cuisines', username=session['user']) }}">Manage Cuisines</a></li>
-                    <li><a class="waves-effect" href="{{ url_for('generate_index', username=session['user']) }}">Generate Search Index</a></li>
-                {% endif %}
-                <li><a class="waves-effect" href="{{ url_for('logout', username=session['user']) }}">Log Out</a></li>
+            <li><a class="waves-effect" href="{{ url_for('my_recipes', username=session['user']) }}">My Recipes</a></li>
+            <li><a class="waves-effect" href="{{ url_for('add_recipe', username=session['user']) }}">Add Recipe</a></li>
+            {% if session.user|lower == "admin"|lower %}
+            <li><a class="waves-effect" href="{{ url_for('admin_recipes', username=session['user']) }}">All Recipes</a>
+            </li>
+            <li><a class="waves-effect" href="{{ url_for('cuisines', username=session['user']) }}">Manage Cuisines</a>
+            </li>
+            <li><a class="waves-effect" href="{{ url_for('generate_index', username=session['user']) }}">Generate Search
+                    Index</a></li>
+            {% endif %}
+            <li><a class="waves-effect" href="{{ url_for('logout', username=session['user']) }}">Log Out</a></li>
             {% else %}
-                <li><a class="waves-effect" href="{{ url_for('login') }}">Log In</a></li>
-                <li><a class="waves-effect" href="{{ url_for('register') }}">Register</a></li>
+            <li><a class="waves-effect" href="{{ url_for('login') }}">Log In</a></li>
+            <li><a class="waves-effect" href="{{ url_for('register') }}">Register</a></li>
             {% endif %}
         </ul>
     </header>
@@ -89,13 +99,15 @@
 
     <div id="dummy_footer">
     </div>
-    
+
     <footer class="page-footer">
         <div class="footer-copyright">
             <div class="container">
-                © 2021 Copyright fene20
-                <a class="grey-text text-lighten-4 right" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>                
+                © 2021 fene20
+                <a class="grey-text text-lighten-4 right" href="https://www.facebook.com/" target="_blank"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
             </div>
         </div>
     </footer>

@@ -1,131 +1,133 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="light-blue-text text-darken-4 center-align">Edit Recipe</h3>
+<h3 class="light-blue-text text-darken-4 center-align">Edit Recipe</h3>
 
-    <div class="row card-panel grey lighten-5">
-        <form class="col s12" method="POST" action="{{ url_for('edit_recipe', username=session['user'], recipe_id=recipe._id) }}">
+<div class="row card-panel grey lighten-5">
+    <form class="col s12" method="POST"
+        action="{{ url_for('edit_recipe', username=session['user'], recipe_id=recipe._id) }}">
 
-            <!-- Choose Cuisine -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
-                    <select id="cuisine_style" name="cuisine_style" class="validate" required>
-                        <option value="" disabled>Choose Cuisine</option>
-                        {% for cuisine in cuisines %}
-                            {% if cuisine.cuisine_style == recipe.cuisine_style %}
-                                <option value="{{ cuisine.cuisine_style }}" selected>{{ cuisine.cuisine_style }}</option> 
-                            {% else %}
-                                <option value="{{ cuisine.cuisine_style }}">{{ cuisine.cuisine_style }}</option> 
-                            {% endif %}
+        <!-- Choose Cuisine -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
+                <select id="cuisine_style" name="cuisine_style" class="validate" required>
+                    <option value="" disabled>Choose Cuisine</option>
+                    {% for cuisine in cuisines %}
+                    {% if cuisine.cuisine_style == recipe.cuisine_style %}
+                    <option value="{{ cuisine.cuisine_style }}" selected>{{ cuisine.cuisine_style }}</option>
+                    {% else %}
+                    <option value="{{ cuisine.cuisine_style }}">{{ cuisine.cuisine_style }}</option>
+                    {% endif %}
 
-                        {% endfor %}
-                    </select>
-                    <label for="cuisine_style">Cuisine</label>
-                </div>
+                    {% endfor %}
+                </select>
+                <label for="cuisine_style">Cuisine</label>
             </div>
+        </div>
 
-            <!-- Recipe Name -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
-                    <!-- name="" attribute is passed to python from the form -->
-                    <!-- name="" attribute is the key that's used in the database -->
-                    <!-- best practice to keep the name, ID, and label all exactly the same -->
-                    <input id="recipe_name" name="recipe_name" minlength="5" maxlength="50"
-                    value="{{ recipe.recipe_name }}" type="text" class="validate" required> 
-                    <label for="recipe_name">Recipe Name</label>
-                </div>
-            </div> 
-            
-            <!-- Picture -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
-                    <input id="picture" name="picture" minlength="5" maxlength="50" type="text"
-                    value="{{ recipe.picture }}" class="validate" required>
-                    <label for="picture">Picture text for now</label>
-                </div>
+        <!-- Recipe Name -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
+                <!-- name="" attribute is passed to python from the form -->
+                <!-- name="" attribute is the key that's used in the database -->
+                <!-- best practice to keep the name, ID, and label all exactly the same -->
+                <input id="recipe_name" name="recipe_name" minlength="5" maxlength="50" value="{{ recipe.recipe_name }}"
+                    type="text" class="validate" required>
+                <label for="recipe_name">Recipe Name</label>
             </div>
+        </div>
 
-            <!-- Ingredients -->
-            <!-- Credit: Stack Overflow for: if not loop.last '\n' endif  -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
-                    <textarea id="ingredients" name="ingredients" minlength="5" maxlength="200"
-                        class="materialize-textarea validate" required>
+        <!-- Picture -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
+                <input id="picture" name="picture" minlength="5" maxlength="50" type="text" value="{{ recipe.picture }}"
+                    class="validate" required>
+                <label for="picture">Picture URL (Upload your picture to https://cloudinary.com/, save it as a square and add the URL here)</label>
+            </div>
+        </div>
+
+        <!-- Ingredients -->
+        <!-- Credit: Stack Overflow for: if not loop.last '\n' endif  -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+                <textarea id="ingredients" name="ingredients" minlength="5" maxlength="200"
+                    class="materialize-textarea validate" required>
                         {%- for ingredient in recipe.ingredients %}
                         {{- ingredient }}{% if not loop.last %}{{ ';' }}{% endif %}
                         {%- endfor -%}
                     </textarea>
-                    <label for="ingredients">Ingredients (Enter Ingredients separated by a ; )</label>
-                </div>
+                <label for="ingredients">Ingredients (Enter Ingredients separated by a ; )</label>
             </div>
+        </div>
 
-            <!-- Preperation steps -->
-            <!-- Credit: Stack Overflow for: if not loop.last '\n' endif  -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
-                    <textarea id="preparation_steps" name="preparation_steps" minlength="5"
-                        maxlength="200" class="materialize-textarea validate" required>
+        <!-- Preperation steps -->
+        <!-- Credit: Stack Overflow for: if not loop.last '\n' endif  -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+                <textarea id="preparation_steps" name="preparation_steps" minlength="5" maxlength="200"
+                    class="materialize-textarea validate" required>
                         {%- for step in recipe.preparation_steps %}
                         {{- step }}{% if not loop.last %}{{ ';' }}{% endif %}
                         {%- endfor -%}                    
                     </textarea>
-                    <label for="preparation_steps">Preperation Steps (Enter Preperation Steps separated by a ; )</label>
-                </div>
+                <label for="preparation_steps">Preperation Steps (Enter Preperation Steps separated by a ; )</label>
             </div>
+        </div>
 
-            <!-- Tools -->
-            <!-- Credit: Stack Overflow for: if not loop.last '\n' endif  -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
-                    <textarea id="tools_required" name="tools_required" minlength="5"
-                        maxlength="200" class="materialize-textarea validate" required>
+        <!-- Tools -->
+        <!-- Credit: Stack Overflow for: if not loop.last '\n' endif  -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+                <textarea id="tools_required" name="tools_required" minlength="5" maxlength="200"
+                    class="materialize-textarea validate" required>
                         {%- for tool in recipe.tools_required %}
                         {{- tool }}{% if not loop.last %}{{ ';' }}{% endif %}
                         {%- endfor -%}                         
                     </textarea>
-                    <label for="tools_required">Tools Required (Enter Tools Required separated by a ; )</label>
+                <label for="tools_required">Tools Required (Enter Tools Required separated by a ; )</label>
+            </div>
+        </div>
+
+        <!-- is published toggle -->
+        <div class="row">
+            <div class="input-field col s12">
+                <div class="switch">
+                    <i class="fas fa-upload prefix light-blue-text text-darken-4"></i>
+                    <label for="is_published">
+                        Save Recipe and finish later
+                        {% if recipe.is_published == "yes" %}
+                        <input type="checkbox" id="is_published" name="is_published" checked>
+                        {% else %}
+                        <input type="checkbox" id="is_published" name="is_published">
+                        {% endif %}
+                        <span class="lever"></span>
+                        Upload Recipe to Website
+                    </label>
                 </div>
             </div>
-
-            <!-- is published toggle -->
-			<div class="row">
-				<div class="input-field col s12">
-					<div class="switch">
-                        <i class="fas fa-upload prefix light-blue-text text-darken-4"></i>
-						<label for="is_published">
-                            Save Recipe and finish later
-                            {% if recipe.is_published == "yes" %}
-                                <input type="checkbox" id="is_published" name="is_published" checked>
-                            {% else %}
-                                <input type="checkbox" id="is_published" name="is_published">
-                            {% endif %}
-                            <span class="lever"></span>
-                            Upload Recipe to Website
-                        </label>
-					</div>
-				</div>
-			</div>
+        </div>
 
 
-            <!-- edit button -->
-            <div class="row">
-                <div class="col s12 center-align">
-                    <a href="{{ url_for('my_recipes', username=session['user']) }}" class="waves-effect btn-large red text-shadow">
-                        Cancel <i class="fas fa-times-circle right"></i>
-                    </a>
-                    <button type="submit" class="waves-effect btn-large light-blue darken-1 text-shadow">
-                        Save Edits <i class="fas fa-save right"></i>
-                    </button>
-                </div>
+        <!-- edit button -->
+        <div class="row">
+            <div class="col s12 center-align">
+                <a href="{{ url_for('my_recipes', username=session['user']) }}"
+                    class="waves-effect btn-large red text-shadow">
+                    Cancel <i class="fas fa-times-circle right"></i>
+                </a>
+                <button type="submit" class="waves-effect btn-large light-blue darken-1 text-shadow">
+                    Save Edits <i class="fas fa-save right"></i>
+                </button>
             </div>
+        </div>
 
-        </form> 
-    </div>
-    
+    </form>
+</div>
+
 {% endblock %}

@@ -1,8 +1,8 @@
-<h1 align="center">Code Institute Website</h1>
+<h1 align="center">Great Recipes Website</h1>
 
-[View the live project here.](https://codeinstitute.net)
+[View the live project here.](https://flask-great-recipes.herokuapp.com/home)
 
-This is the main marketing website for Code Institute. It is designed to be responsibe and accessible on a range of devices, making it easy to navigate for potential students and partners.
+This is the website for the Great Recipes database. It is designed to be responsibe and accessible on a range of devices, making it easy to navigate for all users.
 
 <h2 align="center"><img src="https://i.ibb.co/TYvTXz1/Example-CI.png"></h2>
 
@@ -12,28 +12,39 @@ This is the main marketing website for Code Institute. It is designed to be resp
 
     -   #### First Time Visitor Goals
 
-        1. As a First Time Visitor, I want to easily understand the main purpose of the site and learn more about the organisation.
-        2. As a First Time Visitor, I want to be able to easily navigate throughout the site to find content.
-        3. As a First Time Visitor, I want to look for testimonials to understand what their users think of them and see if they are trusted. I also want to locate their social media links to see their followings on social media to determine how trusted and known they are.
+        1. As a First Time Visitor, I want to easily understand the main purpose of the site.
+        2. As a First Time Visitor, I want to be able to easily navigate throughout the site to find or add recipes.
+        3. As a First Time Visitor, I want to look for testimonials to understand what users think of the website and the recipes. I also want to locate their social media links to see their followings on social media to determine what people think of the recipes.
 
     -   #### Returning Visitor Goals
 
-        1. As a Returning Visitor, I want to find information about coding challenges.
-        2. As a Returning Visitor, I want to find the best way to get in contact with the organisation with any questions I may have.
-        3. As a Returning Visitor, I want to find community links.
+        1. As a Returning Visitor, I want to quickly finds recipes for the cuisine that I'm interested in. 
+        2. As a Returning Visitor, I want to find community links.
+               
+        1. As a Returning Visitor, I want to find information about coding challenges. ,,,,,,,,,,,,,,,
+        2. As a Returning Visitor, I want to find the best way to get in contact with the organisation with any questions I may have.,,,
 
     -   #### Frequent User Goals
-        1. As a Frequent User, I want to check to see if there are any newly added challenges or hackathons.
+        1. As a Frequent User, I want to add my own recipes.
+        1. As a Frequent User, I want to check to see if there are any newly added recipes. ----- needs date.
         2. As a Frequent User, I want to check to see if there are any new blog posts.
-        3. As a Frequent User, I want to sign up to the Newsletter so that I am emailed any major updates and/or changes to the website or organisation.
+        3. As a Frequent User, I want to sign up to the Newsletter so that I am emailed any major updates and/or changes to the website or organisation.,,,,,,,,,,,,,,,,,,
 
 -   ### Design
     -   #### Colour Scheme
-        -   The two main colours used are Code Insititue red, and white.
+        -   The two main colours used are light blue and white.
+
     -   #### Typography
         -   The Montserrat font is the main font used throughout the whole website with Sans Serif as the fallback font in case for any reason the font isn't being imported into the site correctly. Montserrat is a clean font used frequently in programming, so it is both attractive and appropriate.
+
+        was
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+
+
     -   #### Imagery
         -   Imagery is important. The large, background hero image is designed to be striking and catch the user's attention. It also has a modern, energetic aesthetic.
+
+        too late to add a hero image to home page.
 
 *   ### Wireframes
 
@@ -49,6 +60,8 @@ This is the main marketing website for Code Institute. It is designed to be resp
 
 
     -   The admin has access to the Home, Add Recipe and Manage Cuisine Pages. The admin can also Log out.
+    
+    Added. The Admin can also generate a search index.
     -   Manage Cuisine Wireframe - [View](wireframe_and_database_design/great_recipes_manage_cuisine.pdf)
 
     18th July. Add My Recipes so that users can click on the recipes they added without searching for them.
@@ -70,6 +83,12 @@ This is the main marketing website for Code Institute. It is designed to be resp
 
 -   [HTML5](https://en.wikipedia.org/wiki/HTML5)
 -   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+-   [Jinja2](https://en.wikipedia.org/wiki/Jinja_(template_engine))
+-   [Python3](https://en.wikipedia.org/wiki/Python_(programming_language))
+-   [jQuery](https://en.wikipedia.org/wiki/JQuery)
+-   [Markdown](https://en.wikipedia.org/wiki/Markdown)
+-   [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+
 
 ### Frameworks, Libraries & Programs Used
 
@@ -77,20 +96,32 @@ This is the main marketing website for Code Institute. It is designed to be resp
     - Bootstrap was used to assist with the responsiveness and styling of the website.
 1. [Hover.css:](https://ianlunn.github.io/Hover/)
     - Hover.css was used on the Social Media icons in the footer to add the float transition while being hovered over.
+1. [Photoshop:](https://www.adobe.com/ie/products/photoshop.html)
+    - Photoshop was used to create the logo, resizing images and editing photos for the website.
+
+
+1. [MaterializeCSS:](https://materializecss.com/)
+    - Materialize is a framework was used to assist with the styling of the website.
+
 1. [Google Fonts:](https://fonts.google.com/)
     - Google fonts were used to import the 'Titillium Web' font into the style.css file which is used on all pages throughout the project.
 1. [Font Awesome:](https://fontawesome.com/)
     - Font Awesome was used on all pages throughout the website to add icons for aesthetic and UX purposes.
-1. [jQuery:](https://jquery.com/)
-    - jQuery came with Bootstrap to make the navbar responsive but was also used for the smooth scroll function in JavaScript.
 1. [Git](https://git-scm.com/)
     - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
+1. [Gitpod](https://www.gitpod.io/)
+    - The Gitpod workspace was used to develop the HTML5, CSS3, Jinja2 and Python3 code.
 1. [GitHub:](https://github.com/)
     - GitHub is used to store the projects code after being pushed from Git.
-1. [Photoshop:](https://www.adobe.com/ie/products/photoshop.html)
-    - Photoshop was used to create the logo, resizing images and editing photos for the website.
 1. [Balsamiq:](https://balsamiq.com/)
-    - Balsamiq was used to create the [wireframes](https://github.com/) during the design process.
+    - Balsamiq was used to create the [wireframes](wireframe_and_database_design/) during the design process.
+1. [Cloudinary:](https://cloudinary.com/)
+    - Cloudinary was used create square images and to host the recipe images.
+1. [mongoDB:](https://www.mongodb.com/)
+    - mongoDB was used create the database to store the recipes, cuisines and user details.
+1. [Flask:](https://www.mongodb.com/)
+    - Flask is a python framework with Werkzeug and Jinja.
+
 
 ## Testing
 
@@ -98,6 +129,11 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 -   [W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://github.com/)
 -   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://github.com/)
+
+
+
+
+
 
 ### Testing User Stories from User Experience (UX) Section
 
@@ -241,21 +277,14 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 ### Acknowledgements
 
 -   My Mentor for continuous helpful feedback.
-
 -   Tutor support at Code Institute for their support.
 
 ### TBD
 
--   Fix redirects after Login and Register. Works in browser.
--   Maybe add dropdown to user recipies to select cuisine.
--   Add tooltip to My recipies to highlight unpublished recipes.
--   Save/Publish recipe name required field.
--   Publish recipe all fields required.
--   Free FAwe save and upload.
--   Add is_published == yes or no to add recipe form.
--   Change ingredients to an array and read with request.form.getlist()
--   Add defensive programming to delete task.
+-   Add date that recipe was created to support listing new recipies first.
+-   Add hero image of nice looking recipe to the home page.
 
+### BUGS
 -   Small bug. saving cuisine style as cuisine name in the DB. changed all references from cuisine_name to cuisine_style.
 -   Small bug. Recipies.html showing no results found. Had {% if tasks|length > 0 %} instead of {% if recipes|length > 0 %}
 -   Small bug. my_recipes.html had same code as recipies.html but was not listing the recipes. Added recipes = list(mongo.db.recipes.find()) yo my_recipies in app.py.
@@ -376,3 +405,9 @@ and
 
 after.
 
+small bug. recipe edit and delete buttons above the footer bar.
+Add
+
+footer {
+  z-index: 1;
+}

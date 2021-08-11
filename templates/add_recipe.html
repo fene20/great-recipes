@@ -1,107 +1,106 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="light-blue-text text-darken-4 center-align">Add Recipe</h3>
+<h3 class="light-blue-text text-darken-4 center-align">Add Recipe</h3>
 
-    <div class="row card-panel grey lighten-5">
-        <form class="col s12" method="POST" action="{{ url_for('add_recipe', username=session['user']) }}">
-            
-            <!-- Choose Cuisine -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
-                    <select id="cuisine_style" name="cuisine_style" class="validate" required>
-                        <option value="" disabled selected>Choose Cuisine</option>
-                        {% for cuisine in cuisines %}
-                            <option value="{{ cuisine.cuisine_style }}">{{ cuisine.cuisine_style }}</option>
-                        {% endfor %}
-                    </select>
-                    <label for="cuisine_style">Cuisine</label>
+<div class="row card-panel grey lighten-5">
+    <form class="col s12" method="POST" action="{{ url_for('add_recipe', username=session['user']) }}">
+
+        <!-- Choose Cuisine -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
+                <select id="cuisine_style" name="cuisine_style" class="validate" required>
+                    <option value="" disabled selected>Choose Cuisine</option>
+                    {% for cuisine in cuisines %}
+                    <option value="{{ cuisine.cuisine_style }}">{{ cuisine.cuisine_style }}</option>
+                    {% endfor %}
+                </select>
+                <label for="cuisine_style">Cuisine</label>
+            </div>
+        </div>
+
+        <!-- Recipe Name -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
+                <!-- name="" attribute is passed to python from the form -->
+                <!-- name="" attribute is the key that's used in the database -->
+                <!-- best practice to keep the name, ID, and label all exactly the same -->
+                <input id="recipe_name" name="recipe_name" minlength="5" maxlength="50" type="text" class="validate"
+                    required>
+                <label for="recipe_name">Recipe Name</label>
+            </div>
+        </div>
+
+        <!-- Picture -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
+                <input id="picture" name="picture" minlength="5" maxlength="200" type="text" class="validate" required>
+                <label for="picture">Picture URL (Upload your picture to https://cloudinary.com/, save it as a square
+                    and add the URL here)</label>
+            </div>
+        </div>
+
+        <!-- Ingredients -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+                <textarea id="ingredients" name="ingredients" minlength="5" maxlength="200"
+                    class="materialize-textarea validate" required></textarea>
+                <label for="ingredients">Ingredients (Enter Ingredients separated by a ; )</label>
+            </div>
+        </div>
+
+        <!-- Preperation steps -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+                <textarea id="preparation_steps" name="preparation_steps" minlength="5" maxlength="200"
+                    class="materialize-textarea validate" required></textarea>
+                <label for="preparation_steps">Preperation Steps (Enter Preperation Steps separated by a ; )</label>
+            </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+                <textarea id="tools_required" name="tools_required" minlength="5" maxlength="200"
+                    class="materialize-textarea validate" required></textarea>
+                <label for="tools_required">Tools Required (Enter Tools Required separated by a ; )</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <div class="switch">
+                    <i class="fas fa-upload prefix light-blue-text text-darken-4"></i>
+                    <label for="is_published">
+                        Save Recipe and finish later
+                        <input type="checkbox" id="is_published" name="is_published">
+                        <span class="lever"></span>
+                        Upload Recipe to Website
+                    </label>
                 </div>
             </div>
+        </div>
 
-            <!-- Recipe Name -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
-                    <!-- name="" attribute is passed to python from the form -->
-                    <!-- name="" attribute is the key that's used in the database -->
-                    <!-- best practice to keep the name, ID, and label all exactly the same -->
-                    <input id="recipe_name" name="recipe_name" minlength="5" maxlength="50"
-                    type="text" class="validate" required> 
-                    <label for="recipe_name">Recipe Name</label>
-                </div>
-            </div> 
-            
-            <!-- Picture -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
-                    <input id="picture" name="picture" minlength="5" maxlength="200" type="text"
-                        class="validate" required>
-                    <label for="picture">Picture URL (Upload your picture to https://cloudinary.com/, save it as a square and add the URL here)</label>
-                </div>
+        <!-- submit button -->
+        <div class="row">
+            <div class="col s12 center-align">
+                <a href="{{ url_for('my_recipes', username=session['user']) }}"
+                    class="waves-effect btn-large red text-shadow">
+                    Cancel <i class="icon-hide fas fa-times-circle right"></i>
+                </a>
+                <button type="submit" class="waves-effect btn-large light-blue darken-1 text-shadow">
+                    Add Recipe <i class="icon-hide fas fa-plus-square right"></i>
+                </button>
             </div>
+        </div>
+        
+    </form>
+</div>
 
-
-            <!-- Ingredients -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
-                    <textarea id="ingredients" name="ingredients" minlength="5"
-                        maxlength="200" class="materialize-textarea validate" required></textarea>
-                    <label for="ingredients">Ingredients (Enter Ingredients separated by a ; )</label>
-                </div>
-            </div>
-
-            <!-- Preperation steps -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
-                    <textarea id="preparation_steps" name="preparation_steps" minlength="5"
-                        maxlength="200" class="materialize-textarea validate" required></textarea>
-                    <label for="preparation_steps">Preperation Steps (Enter Preperation Steps separated by a ; )</label>
-                </div>
-            </div>
-
-            <!-- Tools -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
-                    <textarea id="tools_required" name="tools_required" minlength="5"
-                        maxlength="200" class="materialize-textarea validate" required></textarea>
-                    <label for="tools_required">Tools Required (Enter Tools Required separated by a ; )</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12">
-                    <div class="switch">
-                        <i class="fas fa-upload prefix light-blue-text text-darken-4"></i>
-                        <label for="is_published">
-                            Save Recipe and finish later
-                            <input type="checkbox" id="is_published" name="is_published"> 
-                            <span class="lever"></span>
-                                Upload Recipe to Website
-                        </label>
-                    </div>  
-                </div>
-            </div>
-
-
-            <!-- submit button -->
-            <div class="row">
-                <div class="col s12 center-align">
-                    <a href="{{ url_for('my_recipes', username=session['user']) }}" class="waves-effect btn-large red text-shadow">
-                        Cancel <i class="icon-hide fas fa-times-circle right"></i>
-                    </a>
-                    <button type="submit" class="waves-effect btn-large light-blue darken-1 text-shadow">
-                        Add Recipe <i class="icon-hide fas fa-plus-square right"></i>
-                    </button>
-                </div>
-            </div>
-
-        </form> 
-    </div>
-    
 {% endblock %}

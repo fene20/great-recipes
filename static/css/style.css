@@ -1,3 +1,8 @@
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .text-shadow {
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
@@ -17,8 +22,6 @@
 
 .brand-logo {
   margin-left: 10px;
-  /* Prevent logo from wrapping on smaller devices
-  width: 70%;  */
 }
 
 /* Materialize footer */
@@ -44,13 +47,23 @@ main {
   width: 100%;
 }
 
+
+.page-footer i:hover {
+  color: #039BE5;
+}
+
+/* prevent buttons from appearing above the footer */
+footer {
+  z-index: 1;
+}
+
 #dummy_footer {
   height: 50px;
 }
 
-/* Keep buttons the same width especially when they wrap */
 
- /* btn1 has an icon until a media max width is reached where the icon is not displayed */
+/* Keep buttons the same width especially when they wrap */
+/* btn1 has an icon until a media max width is reached where the icon is not displayed */
 .btn1 {
   width: 140px;
   margin: 5px;
@@ -64,13 +77,13 @@ main {
   width: 80px;
 }
 
-#from-image-to-dropdown {
+.from-image-to-dropdown {
   float: left;
 }
 
-#from-image-to-dropdown #recipe-image,
-#from-image-to-dropdown #pull-down,
-#from-image-to-dropdown #edit-and-delete {
+.from-image-to-dropdown .recipe-image,
+.from-image-to-dropdown .pull-down,
+.from-image-to-dropdown .edit-and-delete {
   float: left;
 }
 
@@ -80,24 +93,12 @@ main {
   flex-direction: row;
 }
 
-
-#name-and-cuisine strong {
+.name-and-cuisine strong {
   margin: 0;
 }
 
-#name-and-cuisine p {
+.name-and-cuisine p {
   margin: 5px 0px;
-}
-
-
-
-.card-panel form .row .input-field i {
-  float: left;
-}
-
-.card-panel form .row .input-field input {
-  float: left;
-  clear: left;
 }
 
 
@@ -118,21 +119,19 @@ main {
     width: 100px;
   }
 
-
   .btn-large {
     width: 180px;
   }
 
 
-  #edit-and-delete .btn2 {
+  .edit-and-delete .btn2 {
     float: left;
   }
 
-  #edit-and-delete .btn3 {
+  .edit-and-delete .btn3 {
     float: left;
     clear: left;
   }
-
 
 
 }
@@ -140,12 +139,12 @@ main {
 
 
 @media screen and (max-width: 600px){
- 
+
 
   .card-panel {
     /* Set to 24px by materialize */
-       padding: 10px;
-   }
+    padding: 10px;
+  }
 
 /* .search-window id added */
   /* Credit: Tutor support [type="text"] added */
@@ -156,39 +155,23 @@ main {
   }
 
 
-
   #search-window button,
   #search-window a {
     padding: 0px 0px;
   }
 
-  .input-field #query{
-   float: left;
-  }
 
-
-  .btn1{
-    /* text-align: center; */
+  .btn1 {
     font-size: 12px;
   }
 
   .btn-large {
     font-size: 12px;
   }
-
 
   .btn-large {
     width: 180px;
   }
-
-  /* .collapsible-header #from-image-to-delete {
-    float: left;
-  }
-
-  .collapsible-header #name-and-cuisine {
-    float: left;
-    clear: left;
-  } */
 
 
   .collapsible-header {
@@ -231,7 +214,7 @@ main {
     font-size: 30px;
   }
 
-  #pull-down i {
+  .pull-down i {
     margin: 0px 2px;
   }
 
