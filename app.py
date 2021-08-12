@@ -325,4 +325,4 @@ def block_force_url_admin(username):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)  # Set equals True for development only.
+            debug=False)  # Set equals True for development only.
