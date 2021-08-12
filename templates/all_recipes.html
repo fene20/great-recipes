@@ -82,7 +82,6 @@
             <div class="col s12 m6 from-image-to-dropdown">
                 <div class="col s5 recipe-image">
                     <img src="{{ recipe.picture }}" alt="Recipe Image" width="90">
-                    <!-- class="responsive-img" -->
                 </div>
 
                 <div class="col s5 edit-and-delete">
@@ -106,7 +105,7 @@
                     <div id="{{ recipe._id }}" class="modal">
                         <div class="modal-content white-text light-blue darken-4 text-shadow">
                             <h4>Confirmation</h4>
-                            <p>Are you sure you would like to delete the <strong>{{ recipe.recipe_name }}</strong>recipe?</p>
+                            <p>Are you sure you would like to delete the<strong>{{ recipe.recipe_name }}</strong>recipe?</p>
                         </div>
                         <div class="modal-footer white-text light-blue darken-4 text-shadow">
                             <a href="{{ url_for('my_recipes', username=session['user']) }}" class="waves-effect modal-close btn-small light-blue lighten-1">No, Cancel</a>

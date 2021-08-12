@@ -256,10 +256,12 @@ admin
 - http://flask-great-recipes.herokuapp.com/add_cuisine/admin
 - http://flask-great-recipes.herokuapp.com/generate_index/admin
 
-- http://flask-great-recipes.herokuapp.com/
-- http://flask-great-recipes.herokuapp.com/home
-- http://flask-great-recipes.herokuapp.com/recipes
-- http://flask-great-recipes.herokuapp.com/generate_index <>
+All app.py functions
+- http://flask-great-recipes.herokuapp.com/ - reader function, defensive code not needed.
+- http://flask-great-recipes.herokuapp.com/home - reader function, defensive code not needed.
+- http://flask-great-recipes.herokuapp.com/recipes - reader function, defensive code not needed.
+- http://flask-great-recipes.herokuapp.com/generate_index - error 404 page ok.
+- http://flask-great-recipes.herokuapp.com/generate_index/admin
 - http://flask-great-recipes.herokuapp.com/search
 - http://flask-great-recipes.herokuapp.com/search_user <>
 - http://flask-great-recipes.herokuapp.com/register

@@ -235,7 +235,7 @@ def edit_recipe(username, recipe_id):
 @app.route("/delete_recipe/<username>, <recipe_id>")
 def delete_recipe(username, recipe_id):
     block_force_url(username)
-    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    mongo.db.recipes.delete_one({"_id": ObjectId(recipe_id)})
     flash("Recipe Successfully Deleted")
     return redirect(url_for('my_recipes', username=session['user']))
 
@@ -297,7 +297,7 @@ def edit_cuisine(username, cuisine_id):
 @app.route("/delete_cuisine/<username>, <cuisine_id>")
 def delete_cuisine(username, cuisine_id):
     block_force_url_admin(username)
-    mongo.db.cuisines.remove({"_id": ObjectId(cuisine_id)})
+    mongo.db.cuisines.delete_one({"_id": ObjectId(cuisine_id)})
     flash("Cuisine Successfully Deleted")
     return redirect(url_for("cuisines", username=username))
 
