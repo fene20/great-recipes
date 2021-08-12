@@ -45,8 +45,7 @@
                 <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
                 <input id="picture" name="picture" minlength="5" maxlength="200" type="text"
                     value="{{ recipe.picture }}" class="validate" required>
-                <label for="picture">Picture URL (Upload your picture to https://cloudinary.com/, save it as a square
-                    and add the URL here)</label>
+                <label for="picture">Add Landscape 4:3 Picture URL here</label>
             </div>
         </div>
 
@@ -61,7 +60,7 @@
                         {{- ingredient }}{% if not loop.last %}{{ ';' }}{% endif %}
                         {%- endfor -%}
                     </textarea>
-                <label for="ingredients">Ingredients (Enter Ingredients separated by a ; )</label>
+                <label for="ingredients">Enter Ingredients separated by a ;</label>
             </div>
         </div>
 
@@ -76,7 +75,7 @@
                         {{- step }}{% if not loop.last %}{{ ';' }}{% endif %}
                         {%- endfor -%}                    
                     </textarea>
-                <label for="preparation_steps">Preperation Steps (Enter Preperation Steps separated by a ; )</label>
+                <label for="preparation_steps">Enter Preperation Steps separated by a ;</label>
             </div>
         </div>
 
@@ -91,7 +90,7 @@
                         {{- tool }}{% if not loop.last %}{{ ';' }}{% endif %}
                         {%- endfor -%}                         
                     </textarea>
-                <label for="tools_required">Tools Required (Enter Tools Required separated by a ; )</label>
+                <label for="tools_required">Enter Tools Required separated by a ;</label>
             </div>
         </div>
 
