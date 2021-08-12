@@ -304,28 +304,21 @@ def delete_cuisine(username, cuisine_id):
 
 # Prevent force URL of functions developed for Users.
 def block_force_url(username):
-    if not session:  # If session is false.
-        # Session not true or does not exist.
-        return redirect(url_for("login"))
-    if username != session["user"]:  # URL username must match session user
-        # URL username not matching session user
-        # Will not kill session as the force URL may be a mistake.
-        # A user forcing a URL can log in again anyway.
+    if session.get('user'):
+        if username != session["user"]:
+            return redirect(url_for("home"))
+    else:
         return redirect(url_for("home"))
 
 
 # Prevent force URL of functions developed for Admin.
 def block_force_url_admin(username):
-    if not session:  # If session is false.
-        # Session not true or does not exist.
-        return redirect(url_for("login"))
-    if username != session["user"]:  # URL username must match session user
-        # URL username not matching session user
-        # Will not kill session as the force URL may be a mistake.
-        # A user forcing a URL can log in again anyway.
-        return redirect(url_for("home"))
-    if username != "admin":
-        # User is not an admin
+    if session.get('user'):
+        if username != session["user"]:
+            return redirect(url_for("home"))
+        if username != "admin":
+            return redirect(url_for("home"))
+    else:
         return redirect(url_for("home"))
 
 
