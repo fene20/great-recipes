@@ -33,8 +33,10 @@
                 <!-- name="" attribute is passed to python from the form -->
                 <!-- name="" attribute is the key that's used in the database -->
                 <!-- best practice to keep the name, ID, and label all exactly the same -->
-                <input id="recipe_name" name="recipe_name" minlength="5" maxlength="50" value="{{ recipe.recipe_name }}"
-                    type="text" class="validate" required>
+                <textarea id="recipe_name" name="recipe_name" minlength="5" maxlength="200"
+                    class="materialize-textarea validate" required>
+                    {{- recipe.recipe_name }}
+                    </textarea>
                 <label for="recipe_name">Recipe Name</label>
             </div>
         </div>
@@ -43,8 +45,10 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
-                <input id="picture" name="picture" minlength="5" maxlength="200" type="text"
-                    value="{{ recipe.picture }}" class="validate" required>
+                <textarea id="picture" name="picture" minlength="5" maxlength="400"
+                    class="materialize-textarea validate" required>
+                    {{- recipe.picture }}
+                    </textarea>
                 <label for="picture">Add Landscape 4:3 Picture URL here</label>
             </div>
         </div>
@@ -54,7 +58,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
-                <textarea id="ingredients" name="ingredients" minlength="5" maxlength="200"
+                <textarea id="ingredients" name="ingredients" minlength="5" maxlength="10000"
                     class="materialize-textarea validate" required>
                         {%- for ingredient in recipe.ingredients %}
                         {{- ingredient }}{% if not loop.last %}{{ ';' }}{% endif %}
@@ -69,7 +73,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
-                <textarea id="preparation_steps" name="preparation_steps" minlength="5" maxlength="200"
+                <textarea id="preparation_steps" name="preparation_steps" minlength="5" maxlength="10000"
                     class="materialize-textarea validate" required>
                         {%- for step in recipe.preparation_steps %}
                         {{- step }}{% if not loop.last %}{{ ';' }}{% endif %}
@@ -84,7 +88,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
-                <textarea id="tools_required" name="tools_required" minlength="5" maxlength="200"
+                <textarea id="tools_required" name="tools_required" minlength="5" maxlength="1000"
                     class="materialize-textarea validate" required>
                         {%- for tool in recipe.tools_required %}
                         {{- tool }}{% if not loop.last %}{{ ';' }}{% endif %}

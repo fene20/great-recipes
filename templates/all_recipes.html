@@ -144,28 +144,28 @@
 
 
         <div class="collapsible-body grey lighten-5">
-            <h5 class="flow-text">Ingredients</h5>
+            <h5>Ingredients</h5>
             <ul>
                 {% for ingredient in recipe.ingredients %}
-                <li class="flow-text">{{ ingredient }}</li>
+                <li><p>textarea{{ ingredient }}</p></li>
                 {% endfor %}
             </ul>
 
-            <h5 class="flow-text">Preparation Steps</h5>
+            <h5>Preparation Steps</h5>
             <ol>
                 {% for step in recipe.preparation_steps %}
-                <li class="flow-text">{{ step }}</li>
+                <li><p>{{ step }}</p></li>
                 {% endfor %}
             </ol>
 
-            <h5 class="flow-text">Tools Required</h5>
+            <h5>Tools Required</h5>
             <ul>
                 {% for tool in recipe.tools_required %}
-                <li class="flow-text">{{ tool }}</li>
+                <li><p>{{ tool }}</p></li>
                 {% endfor %}
             </ul>
 
-            <p class="flow-text"><em>by: {{ recipe.created_by }}</em></p>
+            <p><em>by: {{ recipe.created_by }}</em></p>
         </div>
     </li>
 
