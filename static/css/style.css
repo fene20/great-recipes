@@ -35,8 +35,9 @@ main {
   flex: 1 0 auto;
 }
 
-.container i {
-  margin-left: 10px;
+footer .container i {
+  margin-right: 10px;
+  display: inline;
 }
 
 .page-footer {
@@ -57,9 +58,11 @@ footer {
   z-index: 1;
 }
 
+
 #dummy_footer {
   height: 50px;
 }
+
 
 
 /* Keep buttons the same width especially when they wrap */
