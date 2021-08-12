@@ -130,10 +130,15 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 -   [W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://github.com/)
 -   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://github.com/)
 
+html ok
+css ok
+js ok
+python code all right
 
+### Usernames and Passwords
 
-
-
+-   username:timothy password:12345678
+-   username:admin password:12345678
 
 ### Testing User Stories from User Experience (UX) Section
 
@@ -191,12 +196,47 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
         2. To the right hand side of the footer the user can see "Subscribe to our Newsletter" and are prompted to Enter their email address.
         3. There is a "Submit" button to the right hand side of the input field which is located close to the field and can easily be distinguished.
 
+### Force URL defensive code testing
+
+heroku url here
+
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io - No need to force test reader URL.
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/home - No need to force test reader URL.
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/login - No need to force test reader URL.
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/register - No need to force test reader URL.
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/my_recipes/timothy - KeyError
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/my_recipes/ - Great Recipes Error 404 page.
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/my_recipes - Great Recipes Error 404 page.
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/add_recipe/timothy - not protected!!
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/add_recipe/ - Great Recipes Error 404 page.
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/add_recipe - Great Recipes Error 404 page.
+
+no login
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/my_recipes/admin
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/add_recipe/admin
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/edit_recipe/admin%2C%206108163bc80beeddeb309516
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/edit_recipe/admin
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/admin_recipes/admin
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/admin_recipes
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/cuisines/admin
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/add_cuisine/admin
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/add_cuisine
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/cuisines
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/generate_index/admin
+https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/generate_index
+
+user login
+
+whatever else is in app.py
+
 ### Further Testing
 
 -   The Website was tested on Google Chrome, Internet Explorer, Microsoft Edge and Safari browsers.
 -   The website was viewed on a variety of devices such as Desktop, Laptop, iPhone7, iPhone 8 & iPhoneX.
 -   A large amount of testing was done to ensure that all pages were linking correctly.
 -   Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
+
+
 
 ### Known Bugs
 
@@ -283,6 +323,7 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 -   Add date that recipe was created to support listing new recipies first.
 -   Add hero image of nice looking recipe to the home page.
+-   Add favicon.
 
 ### BUGS
 -   Small bug. saving cuisine style as cuisine name in the DB. changed all references from cuisine_name to cuisine_style.

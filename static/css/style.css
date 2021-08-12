@@ -93,13 +93,20 @@ footer {
   flex-direction: row;
 }
 
-.name-and-cuisine strong {
-  margin: 0;
+.collapsible-header .name-and-cuisine strong {
+  margin: 0px 0px;
 }
 
 .name-and-cuisine p {
   margin: 5px 0px;
 }
+
+
+.switch div {
+  display: inline;
+}
+
+
 
 
 @media screen and (max-width: 1000px){
@@ -176,6 +183,11 @@ footer {
 
   .collapsible-header {
     flex-direction: column;
+  }
+
+
+  .switch div {
+    display: block;
   }
 
 }
