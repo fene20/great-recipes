@@ -158,6 +158,16 @@ def admin_recipes(username):
         "all_recipes.html", username=username, recipes=recipes, access="all")
 
 
+# Admin function to search all recipes in the Database
+@app.route("/search_admin_recipes/<username>", methods=["GET", "POST"])
+def search_admin_recipes(username):
+    block_force_url_admin(username)
+    query = request.form.get("query")
+    recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
+    return render_template(
+        "all_recipes.html", username=username, recipes=recipes, access="all")
+
+
 # Logout function available to Users.
 @app.route("/logout/<username>")
 def logout(username):
@@ -303,20 +313,20 @@ def delete_cuisine(username, cuisine_id):
 
 
 # Prevent force URL of functions developed for Users.
-def block_force_url(username):
+def block_force_url(block_username):
     if session.get('user'):
-        if username != session["user"]:
+        if block_username != session["user"]:
             return redirect(url_for("home"))
     else:
         return redirect(url_for("home"))
 
 
 # Prevent force URL of functions developed for Admin.
-def block_force_url_admin(username):
+def block_force_url_admin(block_username):
     if session.get('user'):
-        if username != session["user"]:
+        if block_username != session["user"]:
             return redirect(url_for("home"))
-        if username != "admin":
+        if block_username != "admin":
             return redirect(url_for("home"))
     else:
         return redirect(url_for("home"))

@@ -198,84 +198,44 @@ python code all right
 
 ### Force URL defensive code testing
 
-heroku url here
+block_force_url function is not working now. Working code from an earlier commit does not work now either.
+Tutor support was contacted but contact was lost when we decided to go with a reboot.
+Code seemed to be working up to redirect(url_for("home")).
+Must park code as is for now.
 
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io - No need to force test reader URL.
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/home - No need to force test reader URL.
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/login - No need to force test reader URL.
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/register - No need to force test reader URL.
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/my_recipes/timothy - KeyError: 'user'
+Reader URL's do not need to be tested.
+http://flask-great-recipes.herokuapp.com/home
+http://flask-great-recipes.herokuapp.com/login
+http://flask-great-recipes.herokuapp.com/register
 
+User URL's
+http://flask-great-recipes.herokuapp.com/home - Reader URL renders ok.
+http://flask-great-recipes.herokuapp.com/recipes - Reader URL renders ok.
+http://flask-great-recipes.herokuapp.com/my_recipes/ Internal Server Error with any text after /
+http://flask-great-recipes.herokuapp.com/my_recipes/ Great Recipes 404 page ok
+http://flask-great-recipes.herokuapp.com/add_recipe/ Renders page with any text after /
+http://flask-great-recipes.herokuapp.com/add_recipe/ Great Recipes 404 page ok
+http://flask-great-recipes.herokuapp.com/search_user/timothy
 
-https://8080-teal-lobster-b2qs96iu.ws-eu15.gitpod.io/add_recipe/timothy works
+Admin URL's
+http://flask-great-recipes.herokuapp.com/home - Reader URL renders ok.
+http://flask-great-recipes.herokuapp.com/my_recipes/ Internal Server Error with any text after /
+http://flask-great-recipes.herokuapp.com/my_recipes/ Great Recipes 404 page ok
+http://flask-great-recipes.herokuapp.com/search_user/ Internal Server Error with any text after /
+http://flask-great-recipes.herokuapp.com/search_user/ Great Recipes 404 page ok
+http://flask-great-recipes.herokuapp.com/my_recipes/ Internal Server Error with any text after /
+http://flask-great-recipes.herokuapp.com/my_recipes/ Great Recipes 404 page ok
+http://flask-great-recipes.herokuapp.com/add_recipe/ Page renders with any text after /
+http://flask-great-recipes.herokuapp.com/add_recipe/ Great Recipes 404 page ok
+http://flask-great-recipes.herokuapp.com/admin_recipes/ Page renders with any text after /
+http://flask-great-recipes.herokuapp.com/admin_recipes/ Great Recipes 404 page ok
+http://flask-great-recipes.herokuapp.com/cuisines/ Page renders with any text after /
+http://flask-great-recipes.herokuapp.com/cuisines/ Great Recipes 404 page ok
+http://flask-great-recipes.herokuapp.com/add_cuisine/ Page renders with any text after /
+http://flask-great-recipes.herokuapp.com/add_cuisine/ Great Recipes 404 page ok
+http://flask-great-recipes.herokuapp.com/generate_index/ Page renders with any text after /
+http://flask-great-recipes.herokuapp.com/generate_index/ Great Recipes 404 page ok
 
-
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/my_recipes/ - Great Recipes Error 404 page.
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/my_recipes - Great Recipes Error 404 page.
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/add_recipe/timothy - not protected!!
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/add_recipe/ - Great Recipes Error 404 page.
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/add_recipe - Great Recipes Error 404 page.
-
-no login
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/my_recipes/admin
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/add_recipe/admin
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/edit_recipe/admin%2C%206108163bc80beeddeb309516
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/edit_recipe/admin
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/admin_recipes/admin
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/admin_recipes
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/cuisines/admin
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/add_cuisine/admin
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/add_cuisine
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/cuisines
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/generate_index/admin
-https://8080-teal-lobster-b2qs96iu.ws-eu14.gitpod.io/generate_index
-
-user login
-
-whatever else is in app.py
-
-Reader
-- https://flask-great-recipes.herokuapp.com/
-- https://flask-great-recipes.herokuapp.com/login
-- https://flask-great-recipes.herokuapp.com/register
-
-User
-- http://flask-great-recipes.herokuapp.com/home
-- http://flask-great-recipes.herokuapp.com/recipes (search)
-- http://flask-great-recipes.herokuapp.com/my_recipes/timothy
-- http://flask-great-recipes.herokuapp.com/edit_recipe/timothy%2C%206106ee4ae19c3957347e8e59
-- http://flask-great-recipes.herokuapp.com/add_recipe/timothy
-
-admin
-- http://flask-great-recipes.herokuapp.com/home
-- http://flask-great-recipes.herokuapp.com/my_recipes/admin
-- http://flask-great-recipes.herokuapp.com/my_recipes/admin (search)
-- http://flask-great-recipes.herokuapp.com/add_recipe/admin
-- http://flask-great-recipes.herokuapp.com/admin_recipes/admin
-- http://flask-great-recipes.herokuapp.com/cuisines/admin
-- http://flask-great-recipes.herokuapp.com/add_cuisine/admin
-- http://flask-great-recipes.herokuapp.com/generate_index/admin
-
-All app.py functions
-- http://flask-great-recipes.herokuapp.com/ - reader function, defensive code not needed.
-- http://flask-great-recipes.herokuapp.com/home - reader function, defensive code not needed.
-- http://flask-great-recipes.herokuapp.com/recipes - reader function, defensive code not needed.
-- http://flask-great-recipes.herokuapp.com/generate_index - error 404 page ok.
-- http://flask-great-recipes.herokuapp.com/generate_index/admin
-- http://flask-great-recipes.herokuapp.com/search
-- http://flask-great-recipes.herokuapp.com/search_user <>
-- http://flask-great-recipes.herokuapp.com/register
-- http://flask-great-recipes.herokuapp.com/login
-- http://flask-great-recipes.herokuapp.com/my_recipes <>
-- http://flask-great-recipes.herokuapp.com/admin_recipes <>
-- http://flask-great-recipes.herokuapp.com/logout <>
-- http://flask-great-recipes.herokuapp.com/add_recipe <>
-- http://flask-great-recipes.herokuapp.com/edit_recipe <> <>
-- http://flask-great-recipes.herokuapp.com/delete_recipe <> <>
-- http://flask-great-recipes.herokuapp.com/cuisines <>
-- http://flask-great-recipes.herokuapp.com/add_cuisine <>
-- http://flask-great-recipes.herokuapp.com/edit_cuisine <> <>
-- http://flask-great-recipes.herokuapp.com/delete_cuisine <> <>
 
 
 

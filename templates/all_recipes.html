@@ -18,7 +18,7 @@
     {% if username == "guest" %}
     <form action="{{ url_for('search') }}" method="post" class="col s12 m12">
     {% elif username == "admin" and access == "all" %}
-    <form action="{{ url_for('admin_recipes', username=session['user']) }}" method="post" class="col s12 m12">
+    <form action="{{ url_for('search_admin_recipes', username=session['user']) }}" method="post" class="col s12 m12">
     {% elif username == "admin" and access == "my" %}
     <form action="{{ url_for('search_user', username=session['user']) }}" method="post" class="col s12 m12">
     {% else %}
