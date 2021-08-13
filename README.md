@@ -87,7 +87,7 @@ This is the website for the Great Recipes database. It is designed to be respons
 1. [Git](https://git-scm.com/)
     - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
 1. [Gitpod](https://www.gitpod.io/)
-    - The Gitpod workspace was used to develop the HTML5, CSS3, Jinja2 and Python3 code.
+    - The Gitpod workspace was used to develop the HTML5, CSS3, Jinja2, JavaScript and Python3 code.
 1. [GitHub:](https://github.com/)
     - GitHub is used to store the projects code after being pushed from Git.
 1. [Balsamiq:](https://balsamiq.com/)
@@ -152,7 +152,7 @@ All validators passed
 -   #### Returning Visitor Goals
 
     1. As a Returning Visitor, I want to quickly finds recipes that I'm interested in. 
-        1. The search recipes window is available on the landing page.
+        1. The search recipes window is available on the landing page to help users find recipes.
       
 
     2. As a Returning Visitor, I want to find community links.
@@ -163,7 +163,7 @@ All validators passed
 -   #### Frequent User Goals
 
     1. As a Frequent User, I want to add my own recipes.
-        1. The user would already be comfortable with the website layout and can easily click Add Recipe Banner.
+        1. The user would already be comfortable with the website layout and can easily click the Add Recipe Banner.
         2. The Add recipe page contains instructions on how to successfully add a recipe.
 
 
@@ -177,39 +177,43 @@ Must park code as is for now.
 All force URL's were tested without user or admin logged in.
 
 Reader URL's do not need to be tested.
-http://flask-great-recipes.herokuapp.com/home
-http://flask-great-recipes.herokuapp.com/login
-http://flask-great-recipes.herokuapp.com/register
+-   http://flask-great-recipes.herokuapp.com/home
+-   http://flask-great-recipes.herokuapp.com/login
+-   http://flask-great-recipes.herokuapp.com/register
 
 User URL's
-http://flask-great-recipes.herokuapp.com/home - Reader URL renders ok.
-http://flask-great-recipes.herokuapp.com/recipes - Reader URL renders ok.
-http://flask-great-recipes.herokuapp.com/my_recipes/ Internal Server Error with any text after /
-http://flask-great-recipes.herokuapp.com/my_recipes/ Great Recipes 404 page ok
-http://flask-great-recipes.herokuapp.com/add_recipe/ Renders page with any text after /
-http://flask-great-recipes.herokuapp.com/add_recipe/ Great Recipes 404 page ok
-http://flask-great-recipes.herokuapp.com/search_user/ Internal Service Error with any text after /
-http://flask-great-recipes.herokuapp.com/search_user/ Great Recipes 404 page ok
+-   http://flask-great-recipes.herokuapp.com/home - Reader URL renders ok.
+-   http://flask-great-recipes.herokuapp.com/recipes - Reader URL renders ok.
+-   http://flask-great-recipes.herokuapp.com/my_recipes/ Internal Server Error with any text after /
+-   http://flask-great-recipes.herokuapp.com/my_recipes/ Great Recipes 404 page ok
+-   http://flask-great-recipes.herokuapp.com/add_recipe/ Renders page with any text after /
+-   http://flask-great-recipes.herokuapp.com/add_recipe/ Great Recipes 404 page ok
+-   http://flask-great-recipes.herokuapp.com/search_user/ Internal Service Error with any text after /
+-   http://flask-great-recipes.herokuapp.com/search_user/ Great Recipes 404 page ok
 
 Admin URL's
-http://flask-great-recipes.herokuapp.com/home - Reader URL renders ok.
-http://flask-great-recipes.herokuapp.com/my_recipes/ Internal Server Error with any text after /
-http://flask-great-recipes.herokuapp.com/my_recipes/ Great Recipes 404 page ok
-http://flask-great-recipes.herokuapp.com/search_user/ Internal Server Error with any text after /
-http://flask-great-recipes.herokuapp.com/search_user/ Great Recipes 404 page ok
-http://flask-great-recipes.herokuapp.com/my_recipes/ Internal Server Error with any text after /
-http://flask-great-recipes.herokuapp.com/my_recipes/ Great Recipes 404 page ok
-http://flask-great-recipes.herokuapp.com/add_recipe/ Page renders with any text after /
-http://flask-great-recipes.herokuapp.com/add_recipe/ Great Recipes 404 page ok
-http://flask-great-recipes.herokuapp.com/admin_recipes/ Page renders with any text after /
-http://flask-great-recipes.herokuapp.com/admin_recipes/ Great Recipes 404 page ok
-http://flask-great-recipes.herokuapp.com/cuisines/ Page renders with any text after /
-http://flask-great-recipes.herokuapp.com/cuisines/ Great Recipes 404 page ok
-http://flask-great-recipes.herokuapp.com/add_cuisine/ Page renders with any text after /
-http://flask-great-recipes.herokuapp.com/add_cuisine/ Great Recipes 404 page ok
-http://flask-great-recipes.herokuapp.com/generate_index/ Page renders with any text after /
-http://flask-great-recipes.herokuapp.com/generate_index/ Great Recipes 404 page ok
+-   http://flask-great-recipes.herokuapp.com/home - Reader URL renders ok.
+-   http://flask-great-recipes.herokuapp.com/my_recipes/ Internal Server Error with any text after /
+-   http://flask-great-recipes.herokuapp.com/my_recipes/ Great Recipes 404 page ok
+-   http://flask-great-recipes.herokuapp.com/search_user/ Internal Server Error with any text after /
+-   http://flask-great-recipes.herokuapp.com/search_user/ Great Recipes 404 page ok
+-   http://flask-great-recipes.herokuapp.com/my_recipes/ Internal Server Error with any text after /
+-   http://flask-great-recipes.herokuapp.com/my_recipes/ Great Recipes 404 page ok
+-   http://flask-great-recipes.herokuapp.com/add_recipe/ Page renders with any text after /
+-   http://flask-great-recipes.herokuapp.com/add_recipe/ Great Recipes 404 page ok
+-   http://flask-great-recipes.herokuapp.com/admin_recipes/ Page renders with any text after /
+-   http://flask-great-recipes.herokuapp.com/admin_recipes/ Great Recipes 404 page ok
+-   http://flask-great-recipes.herokuapp.com/cuisines/ Page renders with any text after /
+-   http://flask-great-recipes.herokuapp.com/cuisines/ Great Recipes 404 page ok
+-   http://flask-great-recipes.herokuapp.com/add_cuisine/ Page renders with any text after /
+-   http://flask-great-recipes.herokuapp.com/add_cuisine/ Great Recipes 404 page ok
+-   http://flask-great-recipes.herokuapp.com/generate_index/ Page renders with any text after /
+-   http://flask-great-recipes.herokuapp.com/generate_index/ Great Recipes 404 page ok
 
+
+### Functional Testing
+
+-   Every button and link on the site was checked for its expected operation.
 
 ### Further Testing
 
@@ -232,7 +236,6 @@ The project was deployed to GitHub Pages using the following steps...
 
 1. Log in to GitHub and locate the [GitHub Repository](https://github.com/fene20/great-recipes)
 2. At the top of the Repository (not top of page), locate the "Settings" Button on the menu.
-    - Alternatively Click [Here](https://raw.githubusercontent.com/) for a GIF demonstrating the process starting from Step 2.
 3. Scroll down the Settings page until you locate the "GitHub Pages" Section.
 4. Under "Source", click the dropdown called "None" and select "Master Branch".
 5. The page will automatically refresh.
@@ -277,10 +280,10 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 ### Code
 
 -   This project is based on the Code Institute Data Centric Development Mini Project.
--   [MaterializeCSS:](https://materializecss.com/): Materialize is a framework which was used to assist with the styling of the website.
--   [Flask:](https://www.mongodb.com/): Flask is a python framework with Werkzeug and Jinja.
--   [mongoDB:](https://www.mongodb.com/): mongoDB was used create the database to store the recipes, cuisines and user details.
--   Credit  https://stackoverflow.com/questions/45719062/jinja-docx-template-avoiding-new-line-in-nested-for/45719723 code to not add a carriage return on the last loop.
+-   [MaterializeCSS:](https://materializecss.com/) Materialize is a framework which was used to assist with the styling of the website.
+-   [Flask:](https://www.mongodb.com/) Flask is a python framework with Werkzeug and Jinja.
+-   [mongoDB:](https://www.mongodb.com/) mongoDB was used create the database to store the recipes, cuisines and user details.
+-   Credit  https://stackoverflow.com/questions/45719062/jinja-docx-template-avoiding-new-line-in-nested-for/45719723 for code to not add a carriage return on the last loop.
 
 -   Credit  https://www.tutorialspoint.com/list-all-values-of-a-certain-field-in-mongodb for code to prevent the adding of duplicate cuisine names.
 
@@ -403,7 +406,7 @@ Edit recipe cancel button did not work.
 werkzeug.routing.BuildError
 werkzeug.routing.BuildError: Could not build url for endpoint 'edit_recipe' with values ['recipe_id']. Did you forget to specify values ['username']?
 
-Due to commented out code in recipres.html.
+Due to commented out code in recipes.html.
                             <!-- {% if session.user|lower == recipe.created_by|lower %}
                                 <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="btn-small light-blue lighten-1">Edit</a>
                                 <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="btn-small red text-shadow">Delete</a>
@@ -418,7 +421,7 @@ due to null in database ingredients, i.e. not an array.
 Coud not edit a recipe and save it again even with no changes.
 AttributeError: 'NoneType' object has no attribute 'split'
 ingredients (but not preperation_steps or tools) in edit_recipe.html was declared as an array with id/name/for="ingredients[]"
-removed square brckets to fix.
+removed square brackets to fix.
 
 -   Bug.
 Credit stack overflow. Hide icons on small devices.
@@ -448,14 +451,14 @@ Tutor support added
   flex-direction: row;
 }
 
-and
+for larger device and 
 
   .collapsible-header {
     flex-direction: column;
   }
 
+for smaller device.
 
-after.
 
 -   Small bug. recipe edit and delete buttons above the footer bar.
 Add
