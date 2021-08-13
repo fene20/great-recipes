@@ -133,7 +133,7 @@ The rendered Heroku webpage HTML code (viewed with view page source) was copied 
 -   [W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](validation/html/)
 -   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](validation/css/css_checker.pdf)
 -   [jshint](https://jshint.com/) - [Results](validation/js/javascript_checker.txt)
--   [http://pep8online.com/](validation/python/pep8_online_check_results.pdf) - [Results](https://github.com/)
+-   [http://pep8online.com/](validation/python/pep8_online_check_results.pdf) - [Results](validation/python/pep8_online_check_results.pdf)
 
 All validators passed
 
