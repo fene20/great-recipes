@@ -226,7 +226,8 @@ Admin URL's
 
 ### Known Bugs
 
--   Bug discovered at last minute. Edit Recipe, recipe name and picture fields have what looks like a carriage return. This is likely due to a recent change from input to textarea on these fields. The additional spaces can be deleted before the recipe is saved.
+-   Bug discovered at last minute on gitpod. Edit Recipe, recipe name and picture fields have what looks like a carriage return. This is likely due to a recent change from input to textarea on these fields. The additional spaces can be deleted before the recipe is saved. Heroku deployement does not have this bug.
+
 -   The force URL defensive code is not returning the user to the home page.
 
 ## Deployment
