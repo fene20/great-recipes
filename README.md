@@ -68,7 +68,7 @@ This is the website for the Great Recipes database. It is designed to be respons
 
 *   ### Database Design
 
-    -   Database Design - [View](wireframe_and_database_design/QuickDBD-Recipe.png)
+    -   Database Design - [View](wireframe_and_database_design/quickdbd-recipe.png)
 
 
 ## Features
@@ -125,15 +125,17 @@ This is the website for the Great Recipes database. It is designed to be respons
 
 ## Testing
 
-The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
+The W3C Markup Validator, W3C CSS Validator, jshint and PEP8 Services were used to validate every page of the project to ensure there were no syntax errors in the project.
 
--   [W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://github.com/)
--   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://github.com/)
+The HTML code contained jinja so a validation the html file woud have errors.
+The rendered Heroku webpage HTML code (viewed with view page source) was copied into the Markup validator for each page.
 
-html ok
-css ok
-js ok
-python code all right
+-   [W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](validation/html/)
+-   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](validation/css/css_checker.pdf)
+-   [jshint](https://jshint.com/) - [Results](validation/js/javascript_checker.txt)
+-   [http://pep8online.com/](validation/python/pep8_online_check_results.pdf) - [Results](https://github.com/)
+
+All validators passed
 
 ### Usernames and Passwords
 
