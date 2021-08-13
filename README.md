@@ -127,10 +127,6 @@ The rendered Heroku webpage HTML code (viewed with view page source) was copied 
 
 All validators passed
 
-### Usernames and Passwords
-
--   username:timothy password:12345678
--   username:admin password:12345678
 
 ### Testing User Stories from User Experience (UX) Section
 
